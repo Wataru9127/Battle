@@ -6,33 +6,20 @@ using System.Collections.Generic;
 /// </summary>
 public interface IPokemon
 {
-    //名前
-    string Name { get; }
+    // ===== 基本情報 =====
+    string Name { get; }            //名前
+    PokemonType FirstType { get; }  //タイプ1
+    PokemonType SecondType { get; } //タイプ2
 
-    //レベル
-    int Level { get; }
+    // ===== ステータス（実数値）=====
+    int CurrentHP { get; }          //HP
+    int MaxHP { get; }              //最大HP
+    PokemonStatus Status { get; }   //実数値
 
-    //タイプ1
-    PokemonType FirstType { get; }
+    int GetRank(PokemonAbility ability);
 
-    //タイプ2
-    PokemonType SecondType { get; }
-
-    //状態異常
-    PokemonStatus Status { get; }
-
-    //せいかく
-    Nature Nature { get; }
-
-    //現在の実数値を取得
-    int GetActual(PokemonAbility ability);
-
-    //ダメージを受ける
-    void TakeDamage(int damage);
-
-    //状態異常を受ける
-    void TakeStatus(PokemonStatus status);
-
-    //きぜつ判定
-    bool IsFainted();
+    // ===== バトル =====
+    void TakeDamage(int damage);            //ダメージを受ける
+    bool SetStatus(PokemonStatus status);   //実数値の設定
+    bool IsFainted();                       //きぜつ判定
 }

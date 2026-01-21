@@ -1,5 +1,3 @@
-using UnityEngine;
-
 /// <summary>
 /// É^ÉCÉv
 /// </summary>

@@ -1,5 +1,3 @@
-using UnityEngine;
-
 /// <summary>
 /// ƒ|ƒPƒ‚ƒ“‚Ìó‘ÔˆÙí
 /// </summary>
@@ -10,6 +8,6 @@ public enum PokemonStatus
     Freeze,         //‚±‚¨‚è
     Paralysis,      //‚Ü‚Ğ
     Poison,         //‚Ç‚­
-    DeadlyPosion,   //‚à‚¤‚Ç‚­
+    DeadlyPoison,   //‚à‚¤‚Ç‚­
     Sleep           //‚Ë‚Ş‚è
 }
