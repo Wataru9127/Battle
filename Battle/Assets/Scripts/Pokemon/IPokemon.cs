@@ -1,19 +1,38 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 /// <summary>
-/// テスト用
+/// インターフェース
 /// </summary>
-public class IPokemon : MonoBehaviour
+public interface IPokemon
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    //名前
+    string Name { get; }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    //レベル
+    int Level { get; }
+
+    //タイプ1
+    PokemonType FirstType { get; }
+
+    //タイプ2
+    PokemonType SecondType { get; }
+
+    //状態異常
+    PokemonStatus Status { get; }
+
+    //せいかく
+    Nature Nature { get; }
+
+    //現在の実数値を取得
+    int GetActual(PokemonAbility ability);
+
+    //ダメージを受ける
+    void TakeDamage(int damage);
+
+    //状態異常を受ける
+    void TakeStatus(PokemonStatus status);
+
+    //きぜつ判定
+    bool IsFainted();
 }

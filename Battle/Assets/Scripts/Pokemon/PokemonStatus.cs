@@ -1,19 +1,15 @@
 using UnityEngine;
 
 /// <summary>
-/// 種族値、実数値
+/// ポケモンの状態異常
 /// </summary>
-public class PokemonStatus : MonoBehaviour
+public enum PokemonStatus
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    None,           //なし
+    Burn,           //やけど
+    Freeze,         //こおり
+    Paralysis,      //まひ
+    Poison,         //どく
+    DeadlyPosion,   //もうどく
+    Sleep           //ねむり
 }

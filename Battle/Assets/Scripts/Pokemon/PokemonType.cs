@@ -3,17 +3,24 @@ using UnityEngine;
 /// <summary>
 /// タイプ
 /// </summary>
-public class PokemonType : MonoBehaviour
+public enum PokemonType
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    Normal,     //ノーマル
+    Fighting,   //かくとう
+    Poison,     //どく
+    Ground,     //じめん
+    Flying,     //ひこう
+    Bug,        //むし
+    Rock,       //いわ
+    Ghost,      //ゴースト
+    Steel,      //はがね
+    Fire,       //ほのお
+    Water,      //みず
+    Electric,   //でんき
+    Grass,      //くさ
+    Ice,        //こおり
+    Esper,      //エスパー
+    Dragon,     //ドラゴン
+    Dark,       //あく
+    Fairy       //フェアリー
 }
