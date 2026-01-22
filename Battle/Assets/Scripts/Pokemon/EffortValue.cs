@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class EffortValue
 {
-    private Dictionary<PokemonAbility, int> effort;
+    public Dictionary<PokemonStatType, int> effort { get; private set; }
 
-    public EffortValue(Dictionary<PokemonAbility, int> values)
+    public EffortValue(Dictionary<PokemonStatType, int> values)
     {
         this.effort = values;
     }
@@ -13,7 +13,7 @@ public class EffortValue
     /// <summary>
     /// Žw’è”\—Í‚Ì“w—Í’l‚ðŽæ“¾
     /// </summary>
-    public int GetEffort(PokemonAbility ability)
+    public int GetEffort(PokemonStatType ability)
     {
         return Mathf.Clamp(effort[ability], 0, 252);
     }

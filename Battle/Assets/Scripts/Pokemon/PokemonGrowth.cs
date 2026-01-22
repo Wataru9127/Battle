@@ -18,21 +18,31 @@ public class PokemonGrowth
 
     //‚¹‚¢‚©‚­
     public Nature Nature { get; private set; }
-    
-    //ƒŒƒxƒ‹
-    public int Level { get; private set; }
 
-    public PokemonGrowth(
-        BaseStats baseStats,
-        IndividualValue iv,
-        EffortValue ev,
-        Nature nature,
-        int level)
+    //ƒŒƒxƒ‹
+    public readonly int level = 50;
+    public int Level => level;
+
+    public PokemonGrowth(BaseStats baseStats, IndividualValue iv, EffortValue ev, Nature nature)
     {
         BaseStats = baseStats;
         IV = iv;
         EV = ev;
         Nature = nature;
-        Level = Mathf.Clamp(level, 1, 100);
+    }
+
+    public void SetNature(Nature nature)
+    {
+        Nature = nature;
+    }
+
+    public void SetIV(IndividualValue iv)
+    {
+        IV = iv;
+    }
+
+    public void SetEV(EffortValue ev)
+    {
+        EV = ev;
     }
 }

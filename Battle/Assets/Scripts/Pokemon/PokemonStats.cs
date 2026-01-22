@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Playables;
 using UnityEngine;
@@ -8,18 +9,18 @@ using UnityEngine;
 public sealed class PokemonStats
 {
     //À”’l
-    private readonly Dictionary<PokemonAbility, int> stats;
+    public Dictionary<PokemonStatType, int> Stats { get; private set; }
 
-    public PokemonStats(Dictionary<PokemonAbility, int> stats)
+    public PokemonStats(Dictionary<PokemonStatType, int> dictionary)
     {
-        this.stats = stats;
+        Stats = dictionary;
     }
 
     /// <summary>
     /// w’è‚ÌÀ”’l‚ğæ“¾‚·‚éŠÖ”
     /// </summary>
-    public int GetStats(PokemonAbility ability)
+    public int GetStats(PokemonStatType stats)
     {
-        return stats.TryGetValue(ability, out var value) ? value : 0;
+        return Stats[stats];
     }
 }

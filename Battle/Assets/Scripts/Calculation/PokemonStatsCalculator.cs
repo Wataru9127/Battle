@@ -2,37 +2,75 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 実数値計算専用クラス
+/// </summary>
 public static class PokemonStatsCalculator
 {
-    public static Dictionary<PokemonAbility, int> Calculate(PokemonGrowth growth)
+    public static PokemonStats Calculate(PokemonGrowth growth)
     {
-        var result = new Dictionary<PokemonAbility, int>();
+        //引数用のDictionary
+        Dictionary< PokemonStatType, int> keyValues = new Dictionary< PokemonStatType, int>();
 
-        foreach (PokemonAbility ability in Enum.GetValues(typeof(PokemonAbility)))
-        {
-            int baseStat = growth.BaseStats.GetBaseStats(ability);
-            int iv = growth.IV.GetIndividual(ability);
-            int ev = growth.EV.GetEffort(ability);
-            int level = growth.Level;
+        int level = growth.Level;
 
-            if (ability == PokemonAbility.HP)
-            {
-                result[ability] = CalculateHP(baseStat, iv, ev, level);
-            }
-            else
-            {
-                float natureModifier = growth.Nature.GetModifier(ability);
-                result[ability] = CalculateOther(
-                    baseStat,
-                    iv,
-                    ev,
-                    level,
-                    natureModifier
-                );
-            }
-        }
+        //それぞれ値を取得
+        int hp = CalculateHP(
+            growth.BaseStats.HP,
+            growth.IV.individual[PokemonStatType.HP],
+            growth.EV.effort[PokemonStatType.HP],
+            level
+        );
 
-        return result;
+        int attack = CalculateOther(
+            growth.BaseStats.Attack,
+            growth.IV.individual[PokemonStatType.Attack],
+            growth.EV.effort[PokemonStatType.Attack],
+            level,
+            growth.Nature.GetModifier(PokemonStatType.Attack)
+        );
+
+        int defense = CalculateOther(
+            growth.BaseStats.Defense,
+            growth.IV.individual[PokemonStatType.Defense],
+            growth.EV.effort[PokemonStatType.Defense],
+            level,
+            growth.Nature.GetModifier(PokemonStatType.Defense)
+        );
+
+        int specialAttack = CalculateOther(
+            growth.BaseStats.SpecialAttack,
+            growth.IV.individual[PokemonStatType.SpecialAttack],
+            growth.EV.effort[PokemonStatType.SpecialAttack],
+            level,
+            growth.Nature.GetModifier(PokemonStatType.SpecialAttack)
+        );
+
+        int specialDefense = CalculateOther(
+            growth.BaseStats.SpecialDefense,
+            growth.IV.individual[PokemonStatType.SpecialDefense],
+            growth.EV.effort[PokemonStatType.SpecialDefense],
+            level,
+            growth.Nature.GetModifier(PokemonStatType.SpecialDefense)
+        );
+
+        int speed = CalculateOther(
+            growth.BaseStats.Speed,
+            growth.IV.individual[PokemonStatType.Speed],
+            growth.EV.effort[PokemonStatType.Speed],
+            level,
+            growth.Nature.GetModifier(PokemonStatType.Speed)
+        );
+
+        //追加
+        keyValues.Add(PokemonStatType.HP, hp);
+        keyValues.Add(PokemonStatType.Attack, attack);
+        keyValues.Add(PokemonStatType.Defense, defense);
+        keyValues.Add(PokemonStatType.SpecialAttack, specialAttack);
+        keyValues.Add(PokemonStatType.SpecialDefense, specialDefense);
+        keyValues.Add(PokemonStatType.Speed, speed);
+
+        return new PokemonStats(keyValues);
     }
 
     /// <summary>
@@ -42,9 +80,7 @@ public static class PokemonStatsCalculator
     private static int CalculateHP(int baseStat, int iv, int ev, int level)
     {
         float value =
-            ((baseStat * 2f + iv + ev / 4f) * level / 100f)
-            + level
-            + 10f;
+            ((baseStat * 2f + iv + ev / 4f) * level / 100f) + level + 10f;
 
         return Mathf.FloorToInt(value);
     }
@@ -53,14 +89,8 @@ public static class PokemonStatsCalculator
     /// HP以外の実数値計算
     /// ABDSC = floor((floor((種族値×2 + 個体値 + 努力値/4) × レベル / 100) + 5) × 性格補正)
     /// </summary>
-    private static int CalculateOther(
-        int baseStat,
-        int iv,
-        int ev,
-        int level,
-        float natureModifier)
+    private static int CalculateOther(int baseStat, int iv, int ev, int level, float natureModifier)
     {
-        // ※ float で正しく計算する
         float baseValue =
             (baseStat * 2f + iv + ev / 4f) * level / 100f;
 

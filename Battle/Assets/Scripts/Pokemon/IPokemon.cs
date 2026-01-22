@@ -16,7 +16,7 @@ public interface IPokemon
     int MaxHP { get; }              //最大HP
     PokemonStatus Status { get; }   //実数値
 
-    int GetRank(PokemonAbility ability);
+    int GetRank(PokemonStatType ability);
 
     // ===== バトル =====
     void TakeDamage(int damage);            //ダメージを受ける

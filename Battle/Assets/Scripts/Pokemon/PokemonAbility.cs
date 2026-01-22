@@ -1,14 +1,9 @@
 using UnityEngine;
 
 /// <summary>
-/// ”\—ÍŽ¯•ÊŽq
+/// ‚Æ‚­‚¹‚¢
 /// </summary>
-public enum PokemonAbility
+public class PokemonAbility
 {
-    HP,                 //HP
-    Attack,             //‚±‚¤‚°‚«
-    Defense,            //‚Ú‚¤‚¬‚å
-    SpecialAttack,      //‚Æ‚­‚±‚¤
-    SpecialDefense,     //‚Æ‚­‚Ú‚¤
-    Speed               //‚·‚Î‚â‚³
+
 }

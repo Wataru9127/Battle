@@ -31,16 +31,16 @@ public class BaseStats
     /// <summary>
     /// Ží‘°’l‚ðŽæ“¾‚·‚é
     /// </summary>
-    public int GetBaseStats(PokemonAbility ability)
+    public int GetBaseStats(PokemonStatType ability)
     {
         return ability switch
         {
-            PokemonAbility.HP => HP,
-            PokemonAbility.Attack => Attack,
-            PokemonAbility.Defense => Defense,
-            PokemonAbility.SpecialAttack => SpecialAttack,
-            PokemonAbility.SpecialDefense => SpecialDefense,
-            PokemonAbility.Speed => Speed,
+            PokemonStatType.HP => HP,
+            PokemonStatType.Attack => Attack,
+            PokemonStatType.Defense => Defense,
+            PokemonStatType.SpecialAttack => SpecialAttack,
+            PokemonStatType.SpecialDefense => SpecialDefense,
+            PokemonStatType.Speed => Speed,
             _ => throw new System.ArgumentOutOfRangeException(nameof(ability))
         };
     }

@@ -22,8 +22,8 @@ public class PokemonSpecies
     public PokemonType? SecondaryType { get; }
 
     //Ží‘°’l
-    public IReadOnlyDictionary<PokemonAbility, int> BaseStats => baseStats;
-    private readonly Dictionary<PokemonAbility, int> baseStats;
+    public IReadOnlyDictionary<PokemonStatType, int> BaseStats => baseStats;
+    private readonly Dictionary<PokemonStatType, int> baseStats;
 
     //‚Æ‚­‚¹‚¢
 }

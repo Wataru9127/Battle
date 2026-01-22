@@ -6,9 +6,9 @@ using UnityEngine;
 /// </summary>
 public class IndividualValue
 {
-    private Dictionary<PokemonAbility, int> individual;
+    public Dictionary<PokemonStatType, int> individual { get; private set; }
 
-    public IndividualValue(Dictionary<PokemonAbility, int> values)
+    public IndividualValue(Dictionary<PokemonStatType, int> values)
     {
         this.individual = values;
     }
@@ -16,7 +16,7 @@ public class IndividualValue
     /// <summary>
     /// �̒l�̎擾
     /// </summary>
-    public int GetIndividual(PokemonAbility ability)
+    public int GetIndividual(PokemonStatType ability)
     {
         return Mathf.Clamp(individual[ability], 0, 31);
     }

@@ -1,0 +1,90 @@
+Scripts
+├─ AbilityBuff
+│   ├─ AbilityModifier.cs
+│   ├─ AbilityStage.cs
+│   └─ RankEffect.cs
+│
+├─ Battle
+│   ├─ Battle.cs
+│   ├─ BattleContext.cs
+│   ├─ BattleEventDispatcher.cs
+│   ├─ BattlePhase.cs
+│   ├─ BattleResult.cs
+│   └─ BattleTurn.cs
+│
+├─ BattleEffect
+│   ├─ EffectPriority.cs
+│   ├─ EffectTarget.cs
+│   ├─ EffectTiming.cs
+│   └─ IBattleEffect.cs
+│
+├─ Calculation
+│   ├─ AccuraryCalculation.cs
+│   ├─ CriticalCalculation.cs
+│   ├─ DamageCalculation.cs
+│   ├─ PokemonStatsCalculation.cs
+│   ├─ RandomModifier.cs
+│   └─ TypeEffectiveness.cs
+│
+├─ Common
+│   ├─ DomainException.cs
+│   ├─ Probability.cs
+│   ├─ RangeInt.cs
+│   └─ TurnCounter.cs
+│
+├─ Field
+│   ├─ ElectricField.cs
+│   ├─ FieldEffect.cs
+│   ├─ GrassyField.cs
+│   ├─ MistyField.cs
+│   └─ PsychicField.cs
+│
+├─ Pokemon
+│   ├─ BaseStats.cs
+│   ├─ BattleParty.cs
+│   ├─ BattlePokemon.cs
+│   ├─ EffortValue.cs
+│   ├─ Individual.cs
+│   ├─ IPokemon.cs
+│   ├─ Nature.cs
+│   ├─ NatureType.cs
+│   ├─ PokemonAbility.cs
+│   ├─ PokemonCondition.cs
+│   ├─ PokemonData.cs
+│   ├─ PokemonGrowth.cs
+│   ├─ PokemonIdentity.cs
+│   ├─ PokemonSpecies.cs
+│   ├─ PokemonStatType.cs
+│   ├─ PokemonStats.cs
+│   └─ PokemonType.cs
+│
+├─ StatusEffect
+│   ├─ Burn.cs
+│   ├─ DeadlyPoison.cs
+│   ├─ Freeze.cs
+│   ├─ Paralysis.cs
+│   ├─ StatusEffect.cs
+│   ├─ Sleep.cs
+│   └─ VolatileStatus.cs
+│
+├─ Waza
+│   ├─ WazaEffect
+│   │   ├─ BuffEffectAdder.cs
+│   │   ├─ DamageEffect.cs
+│   │   ├─ FieldEffectAdder.cs
+│   │   ├─ StatusEffectAdder.cs
+│   │   ├─ IWazaEffect.cs
+│   │   └─ WeatherEffectAdder.cs
+│   │
+│   ├─ Waza.cs
+│   ├─ WazaCategory.cs
+│   ├─ WazaResult.cs
+│   ├─ WazaTarget.cs
+│   └─ WazaEffect.cs
+│
+└─ Weather
+    ├─ Rain.cs
+    ├─ Sandstorm.cs
+    ├─ Snow.cs
+    ├─ Weather.cs
+    └─ Sunny.cs
