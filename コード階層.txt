@@ -1,9 +1,4 @@
 Scripts
-├─ AbilityBuff
-│   ├─ AbilityModifier.cs
-│   ├─ AbilityStage.cs
-│   └─ RankEffect.cs
-│
 ├─ Battle
 │   ├─ Battle.cs
 │   ├─ BattleContext.cs
@@ -29,6 +24,7 @@ Scripts
 ├─ Common
 │   ├─ DomainException.cs
 │   ├─ Probability.cs
+│   ├─ RandomExtensions.cs	ランダム数値
 │   ├─ RangeInt.cs
 │   └─ TurnCounter.cs
 │
@@ -40,32 +36,40 @@ Scripts
 │   └─ PsychicField.cs
 │
 ├─ Pokemon
-│   ├─ BaseStats.cs
-│   ├─ BattleParty.cs
-│   ├─ BattlePokemon.cs
-│   ├─ EffortValue.cs
-│   ├─ Individual.cs
-│   ├─ IPokemon.cs
-│   ├─ Nature.cs
-│   ├─ NatureType.cs
-│   ├─ PokemonAbility.cs
-│   ├─ PokemonCondition.cs
-│   ├─ PokemonData.cs
-│   ├─ PokemonGrowth.cs
-│   ├─ PokemonIdentity.cs
-│   ├─ PokemonSpecies.cs
-│   ├─ PokemonStatType.cs
-│   ├─ PokemonStats.cs
-│   └─ PokemonType.cs
+│   ├─ BaseStats.cs		種族値
+│   ├─ BattleParty.cs	手持ち
+│   ├─ BattlePokemon.cs	手持ちのポケモン1匹
+│   ├─ EffortValue.cs	努力値
+│   ├─ Individual.cs		個体値
+│   ├─ IPokemon.cs		インターフェース
+│   ├─ Nature.cs		性格
+│   ├─ NatureType.cs		性格enum
+│   ├─ PokemonAbility.cs	特性
+│   ├─ PokemonCondition.cs	HP・状態異常・能力ランク
+│   ├─ PokemonData.cs	ポケモン1匹のデータ
+│   ├─ PokemonGrowth.cs	種族値・個体値・努力値・せいかく・レベル
+│   ├─ PokemonIdentity.cs	名前
+│   ├─ PokemonSpecies.cs	図鑑情報
+│   ├─ PokemonStats.cs	実数値
+│   ├─ PokemonStatType.cs	能力識別enum
+│   └─ PokemonType.cs	タイプ
 │
 ├─ StatusEffect
-│   ├─ Burn.cs
-│   ├─ DeadlyPoison.cs
-│   ├─ Freeze.cs
-│   ├─ Paralysis.cs
-│   ├─ StatusEffect.cs
-│   ├─ Sleep.cs
-│   └─ VolatileStatus.cs
+├─ NonVolatile
+│   ├─ BurnStatus.cs		やけど
+│   ├─ DeadlyPoisonStatus.cs	もうどく
+│   ├─ FreezeStatus.cs	こおり
+│   ├─ NonVolatileStatus.cs	継承元
+│   ├─ ParalysisStatus.cs	まひ
+│   ├─ PoisonStatus.cs	どく
+│   └─ SleepStatus.cs	ねむり
+├─ Volatile
+│   ├─ AttractStatus.cs	メロメロ
+│   ├─ BindStatus.cs		バインド
+│   ├─ Confusion.cs		こんらん
+│   ├─ MistletoeSeed.cs	やどりぎ
+│   ├─ Taunt.cs		ちょうはつ
+│   └─ VolatileStatus.cs	継承元
 │
 ├─ Waza
 │   ├─ WazaEffect

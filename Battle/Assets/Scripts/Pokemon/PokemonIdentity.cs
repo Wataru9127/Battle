@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// 名前・タイプ
+/// 名前
 /// </summary>
 public class PokemonIdentity
 {

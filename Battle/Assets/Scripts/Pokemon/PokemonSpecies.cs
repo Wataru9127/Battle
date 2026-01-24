@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// í‘°
+/// }ŠÓî•ñ
 /// </summary>
 public class PokemonSpecies
 {
