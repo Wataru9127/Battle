@@ -14,12 +14,12 @@ public interface IPokemon
     // ===== ステータス（実数値）=====
     int CurrentHP { get; }          //HP
     int MaxHP { get; }              //最大HP
-    PokemonStatus Status { get; }   //実数値
+    PokemonStats Stats { get; }   //実数値
 
     int GetRank(PokemonStatType ability);
 
     // ===== バトル =====
     void TakeDamage(int damage);            //ダメージを受ける
-    bool SetStatus(PokemonStatus status);   //実数値の設定
+    bool SetStatus(PokemonStats stats);   //実数値の設定
     bool IsFainted();                       //きぜつ判定
 }
