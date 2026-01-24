@@ -1,21 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 /// <summary>
 /// •¨— / “Áê / •Ï‰»
 /// </summary>
-public class WazaCategory : MonoBehaviour
+public enum WazaCategory
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    Physical,   // •¨—‹Z
+    Special,    // “Áê‹Z
+    Status      // •Ï‰»‹Z
 }

@@ -5,17 +5,18 @@ using UnityEngine;
 /// <summary>
 /// åªç›ÇÃèÛãµ
 /// </summary>
-public class BattleContext : MonoBehaviour
+public class BattleContext
 {
-    // Start is called before the first frame update
-    void Start()
+    public System.Random Random { get; }
+
+
+    public BattleContext(int seed)
     {
-        
+        Random = new System.Random(seed);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void AddLog(string log)
     {
-        
+
     }
 }

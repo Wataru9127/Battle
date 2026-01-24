@@ -5,6 +5,9 @@ using UnityEngine;
 /// </summary>
 public class PokemonData
 {
+    //この情報を所有するバトルポケモン
+    public BattlePokemon Owner { get; }
+
     //名前・タイプ
     public PokemonIdentity Identity { get; }
 
