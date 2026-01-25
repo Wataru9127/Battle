@@ -1,4 +1,5 @@
 using Battle;
+using Common;
 
 /// <summary>
 /// こおり
@@ -17,7 +18,7 @@ public class FreezeStatus : NonVolatileStatus
     /// <summary>
     /// 付与時
     /// </summary>
-    public override void OnApply(PokemonCondition condition, Battle.BattleContext context)
+    public override void OnApply(PokemonCondition condition, BattleContext context)
     {
         thawed = false;
         context.AddLog($"{condition}は こおってしまった！");
@@ -26,7 +27,7 @@ public class FreezeStatus : NonVolatileStatus
     /// <summary>
     /// ターン開始時：自然解除判定（20%）
     /// </summary>
-    public override void OnTurnStart(PokemonCondition condition, Battle.BattleContext context)
+    public override void OnTurnStart(PokemonCondition condition, BattleContext context)
     {
         if (context.Random.NextFloat() < 0.2f)
         {

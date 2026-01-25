@@ -1,12 +1,16 @@
-using System;
+using Calculator;
 using System.Collections.Generic;
 using UnityEngine;
+using static PokemonStatType;
 
 /// <summary>
 /// 実数値計算専用クラス
 /// </summary>
 public static class PokemonStatsCalculator
 {
+    /// <summary>
+    /// 実数値の計算
+    /// </summary>
     public static PokemonStats Calculate(PokemonGrowth growth)
     {
         //引数用のDictionary
@@ -97,5 +101,30 @@ public static class PokemonStatsCalculator
         float value = Mathf.Floor(baseValue + 5f) * natureModifier;
 
         return Mathf.FloorToInt(value);
+    }
+
+    /// <summary>
+    /// 能力ランク込みの実数値の取得
+    /// ・ランク >= 0  => 実数値 × (2 + ランク) / 2
+    /// ・ランク < 0   => 実数値 × 2 / (2 - ランク)
+    /// ただし、HP・命中率はのぞく
+    /// </summary>
+    public static int CalculateInRank(BattlePokemon pokemon, PokemonStatType statType)
+    {
+        //現在の能力ランクを取得
+        int rank = pokemon.Condition.GetRank(statType);
+
+        //実数値を取得
+        int stat = pokemon.PokemonData.Stats.GetStatsValue(statType);
+
+        //ランク補正をかける
+        if (rank >= 0)
+        {
+            return Mathf.FloorToInt(stat * (2f + rank) / 2f);
+        }
+        else
+        {
+            return Mathf.FloorToInt(stat * 2f / (2f - rank));
+        }
     }
 }

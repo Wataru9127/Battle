@@ -13,16 +13,16 @@ Scripts
 │   └─ IBattleEffect.cs
 │
 ├─ Calculation
-│   ├─ AccuraryCalculation.cs
-│   ├─ CriticalCalculation.cs
-│   ├─ DamageCalculation.cs
+│   ├─ AccuraryCalculation.cs	命中率判定
+│   ├─ CriticalCalculation.cs	急所計算
+│   ├─ DamageCalculation.cs		ダメージ計算
 │   ├─ FieldDurationCalculator.cs	フィールド展開時の持続ターン数計算
 │   ├─ PokemonStatsCalculation.cs	実数値計算
-│   ├─ RandomModifier.cs
-│   └─ TypeEffectiveness.cs
+│   ├─ RandomModifier.cs		乱数計算
+│   └─ TypeEffectiveness.cs		タイプ相性計算
 │
 ├─ Common
-│   ├─ DomainException.cs
+│   ├─ DomainException.cs	ルール違反やエラーを検知する専用例外
 │   ├─ Probability.cs	確率計算
 │   ├─ RandomExtensions.cs	ランダム数値
 │   ├─ RangeInt.cs
@@ -36,12 +36,12 @@ Scripts
 │   └─ PsychicField.cs	サイコフィールド
 │
 ├─ Pokemon
-│   ├─ BaseStats.cs		種族値
+│   ├─ PokemonBaseStats.cs	名前・タイプ
 │   ├─ BattleParty.cs	手持ち
 │   ├─ BattlePokemon.cs	手持ちのポケモン1匹
 │   ├─ EffortValue.cs	努力値
+│   ├─ FormChangeData.cs	フォルムチェンジ・メガシンカ用データ
 │   ├─ Individual.cs		個体値
-│   ├─ IPokemon.cs		インターフェース
 │   ├─ Nature.cs		性格
 │   ├─ NatureType.cs		性格enum
 │   ├─ PokemonAbility.cs	特性
@@ -53,23 +53,24 @@ Scripts
 │   ├─ PokemonStats.cs	実数値
 │   ├─ PokemonStatType.cs	能力識別enum
 │   └─ PokemonType.cs	タイプ
+│   └─ FormChangeData.cs	フォルムチェンジ・メガシンカ用データ
 │
 ├─ StatusEffect
-├─ NonVolatile
-│   ├─ BurnStatus.cs		やけど
-│   ├─ DeadlyPoisonStatus.cs	もうどく
-│   ├─ FreezeStatus.cs	こおり
-│   ├─ NonVolatileStatus.cs	継承元
-│   ├─ ParalysisStatus.cs	まひ
-│   ├─ PoisonStatus.cs	どく
-│   └─ SleepStatus.cs	ねむり
-├─ Volatile
-│   ├─ AttractStatus.cs	メロメロ
-│   ├─ BindStatus.cs		バインド
-│   ├─ Confusion.cs		こんらん
-│   ├─ MistletoeSeed.cs	やどりぎ
-│   ├─ Taunt.cs		ちょうはつ
-│   └─ VolatileStatus.cs	継承元
+│   ├─ NonVolatile
+│   │    ├─ BurnStatus.cs		やけど
+│   │    ├─ DeadlyPoisonStatus.cs	もうどく
+│   │    ├─ FreezeStatus.cs	こおり
+│   │    ├─ NonVolatileStatus.cs	継承元
+│   │    ├─ ParalysisStatus.cs	まひ
+│   │    ├─ PoisonStatus.cs		どく
+│   │    └─ SleepStatus.cs		ねむり
+│   └─Volatile
+│   │    ├─ AttractStatus.cs	メロメロ
+│   │    ├─ BindStatus.cs		バインド
+│   │    ├─ Confusion.cs		こんらん
+│   │    ├─ MistletoeSeed.cs	やどりぎ
+│   │    ├─ Taunt.cs		ちょうはつ
+│   │    └─ VolatileStatus.cs	継承元
 │
 ├─ Waza
 │   ├─ WazaEffect
@@ -80,11 +81,12 @@ Scripts
 │   │   ├─ IWazaEffect.cs
 │   │   └─ WeatherEffectAdder.cs
 │   │
-│   ├─ Waza.cs
-│   ├─ WazaCategory.cs
+│   ├─ WazaBase.cs			わざの基底クラス
+│   ├─ WazaCategory.cs		わざのカテゴリ
 │   ├─ WazaResult.cs
-│   ├─ WazaTarget.cs
+│   ├─ WazaTarget.cs			わざの対象
 │   └─ WazaEffect.cs
+│   └─ WazaProperty.cs		接触技、音技などの種類
 │
 └─ Weather
     ├─ Rain.cs

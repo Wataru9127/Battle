@@ -45,4 +45,9 @@ public class PokemonGrowth
     {
         EV = ev;
     }
+
+    public void SetBaseStats(BaseStats baseStats)
+    {
+        BaseStats = baseStats;
+    }
 }

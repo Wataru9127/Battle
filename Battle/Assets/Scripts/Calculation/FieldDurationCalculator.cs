@@ -1,18 +1,21 @@
-/// <summary>
-/// フィールド持続ターン計算
-/// </summary>
-public static class FieldDurationCalculator
+namespace Calculator
 {
-    public static int Calculate(BattlePokemon user, int baseTurn)
+    /// <summary>
+    /// フィールド持続ターン計算
+    /// </summary>
+    public static class FieldDurationCalculator
     {
-        int turn = baseTurn;
+        public static int Calculate(BattlePokemon user, int baseTurn)
+        {
+            int turn = baseTurn;
 
-        //アイテム(グランドコード)で持続ターン増加
-        //if (user.HasItem(ItemID.FieldExtender))
-        //{
-        //    turn += 3;
-        //}
+            //アイテム(グランドコード)で持続ターン増加
+            //if (user.HasItem(ItemID.FieldExtender))
+            //{
+            //    turn += 3;
+            //}
 
-        return turn;
+            return turn;
+        }
     }
 }

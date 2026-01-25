@@ -6,7 +6,7 @@ using UnityEngine;
 public class PokemonData
 {
     //この情報を所有するバトルポケモン
-    public BattlePokemon Owner { get; }
+    public BattlePokemon Owner { get; private set; }
 
     //名前・タイプ
     public PokemonBaseInfo BaseInfo { get; }
@@ -26,6 +26,17 @@ public class PokemonData
         Growth = growth;
         Ability = ability;
 
-        PokemonStatsCalculator.Calculate(Growth);
+        //バトル開始時の実数値の計算
+        Stats = PokemonStatsCalculator.Calculate(Growth);
+    }
+
+    public void SetOwner(BattlePokemon owner)
+    {
+        Owner = owner;
+    }
+
+    public void SetGrowth(PokemonGrowth growth)
+    {
+        Growth = growth;
     }
 }

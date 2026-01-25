@@ -67,6 +67,10 @@ namespace Battle
 
 
         // ===== フィールド管理 =====
+        /// <summary>
+        /// フィールド展開
+        /// </summary>
+        /// <param name="field"></param>
         public void SetField(FieldEffect field)
         {
             //フィールド展開中に同じフィールドが展開されようとしたとき
@@ -155,9 +159,8 @@ namespace Battle
             if (CurrentField != null)
             {
                 CurrentField.OnTurnEnd(this);
-                CurrentField.DecreaseTurn();
 
-                if (CurrentField.IsExpired)
+                if (CurrentField.Tick())
                 {
                     var expiredField = CurrentField;
 
@@ -174,9 +177,8 @@ namespace Battle
             if (CurrentWeather != null)
             {
                 CurrentWeather.OnTurnEnd(this);
-                CurrentWeather.DecreaseTurn();
 
-                if (CurrentWeather.IsExpired)
+                if (CurrentWeather.Tick())
                 {
                     CurrentWeather.OnEnd(this);
                     CurrentWeather = null;

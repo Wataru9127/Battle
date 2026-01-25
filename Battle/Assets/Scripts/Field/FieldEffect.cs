@@ -1,5 +1,5 @@
 /// <summary>
-/// フィールド抽象クラス
+/// フィールド基底クラス
 /// </summary>
 namespace Field
 {
@@ -30,21 +30,22 @@ namespace Field
 
         //ダメージ補正
         public virtual float ModifyDamage(BattlePokemon attacker, BattlePokemon defender,
-            Waza.Waza waza, float damage)
+            Waza.WazaBase waza, float damage)
         {
             return damage;
         }
 
         //技使用可否 => サイコフィールド用
         public virtual bool CanUseWaza(BattlePokemon attacker, BattlePokemon defender,
-            Waza.Waza waza)
+            Waza.WazaBase waza)
         {
             return true;
         }
 
-        public void DecreaseTurn()
+        public bool Tick()
         {
             RemainingTurn--;
+            return IsExpired;
         }
 
         //解除

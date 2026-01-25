@@ -22,8 +22,8 @@ public class PokemonCondition
     //状態異常 こんらん など
     public List<VolatileStatus> VolatileStatuses { get; }
 
-    //現在の能力ランク
-    private Dictionary<PokemonStatType, int> rank;
+    //現在の能力ランク(H・A・B・C・D・S)
+    private Dictionary<PokemonStatType, int> rank { get; }
 
     //気絶判定
     public bool IsFainted => CurrentHP <= 0;

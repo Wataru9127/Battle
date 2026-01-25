@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 /// <summary>
-/// 抽象クラス
+/// 基底クラス
 /// </summary>
 namespace Weather
 {
@@ -28,14 +24,15 @@ namespace Weather
 
         //技威力補正
         public virtual float ModifyDamage(BattlePokemon attacker, BattlePokemon defender,
-            Waza.Waza waza, float damage)
+            Waza.WazaBase waza, float damage)
         {
             return damage;
         }
 
-        public void DecreaseTurn()
+        public bool Tick()
         {
             RemainingTurn--;
+            return IsExpired;
         }
 
         //解除

@@ -1,21 +1,16 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 /// <summary>
 /// タイプ相性計算
 /// </summary>
-public class TypeEffectiveness : MonoBehaviour
+namespace Calculator
 {
-    // Start is called before the first frame update
-    void Start()
+    public static class TypeEffectiveness
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public static float GetRate(PokemonType wazaType, IReadOnlyList<PokemonType> defenseType)
+        {
+            /*タイプ相性計算*/
+            return 0;
+        }
     }
 }

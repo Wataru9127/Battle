@@ -1,21 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using System;
 
 /// <summary>
-/// バトルドメインのルール違反を検知する専用例外
+/// ルール違反やエラーを検知する専用例外
 /// </summary>
-public class DomainException : MonoBehaviour
+namespace Common
 {
-    // Start is called before the first frame update
-    void Start()
+    public class DomainException : Exception
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public DomainException(string message) : base(message) { }
     }
 }

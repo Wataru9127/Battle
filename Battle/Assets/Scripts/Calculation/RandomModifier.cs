@@ -1,21 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using Unity.VisualScripting;
 
 /// <summary>
-/// ダメージのランダム変動率の計算
+/// 乱数計算
 /// </summary>
-public class RandomModifier : MonoBehaviour
+namespace Calculator
 {
-    // Start is called before the first frame update
-    void Start()
+    public static class RandomModifier
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public static float Get()
+        {
+            /*乱数計算*/
+            return 0;
+        }
     }
 }

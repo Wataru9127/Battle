@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using static PokemonType;
 
 /// <summary>
 /// エレキフィールド
@@ -12,14 +10,18 @@ namespace Field
         public override string Name => "エレキフィールド";
         public ElectricFIeld(int duration) : base(duration) { }
 
-        public override float ModifyDamage(BattlePokemon attacker, BattlePokemon defender, Waza.Waza waza, float damage)
+        /// <summary>
+        /// でんきタイプの技の威力 * 1.3
+        /// </summary>
+        public override float ModifyDamage(BattlePokemon attacker, BattlePokemon defender, Waza.WazaBase waza, float damage)
         {
-            //でんきタイプなら 1.3倍
-            if (attacker.IsOnField && waza.Type == PokemonType.Electric)
-            {
-                return damage * 1.3f;
-            }
+            //フィールドの影響を受けない状態 => 無視
+            if (!attacker.IsOnField) return damage;
 
+            //技タイプがでんき => 1.3倍
+            if (waza.Type == Electric) return damage * 1.3f;
+
+            //それ以外 => 無視
             return damage;
         }
     }

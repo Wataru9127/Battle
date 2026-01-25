@@ -1,21 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 /// <summary>
 /// ã}èäåvéZ
 /// </summary>
-public class CriticalCalculator : MonoBehaviour
+namespace Calculator
 {
-    // Start is called before the first frame update
-    void Start()
+    public class CriticalCalculator
     {
-        
-    }
+        public static float GetModifier()
+        {
+            /*ã}èäåvéZ*/
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+            return 0;
+        }
     }
 }
