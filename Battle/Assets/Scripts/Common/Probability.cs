@@ -1,21 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// ワザの追加効果発動率、急所判定、状態異常発生率
+/// 確率計算
 /// </summary>
-public class Probability : MonoBehaviour
+namespace Common
 {
-    // Start is called before the first frame update
-    void Start()
+    public static class Probability
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        //確率計算 => 引数より値が小さいかを判定する
+        public static bool Check(System.Random random, float rate)
+        {
+            rate = Mathf.Clamp01(rate);
+            return random.NextDouble() < rate;
+        }
     }
 }

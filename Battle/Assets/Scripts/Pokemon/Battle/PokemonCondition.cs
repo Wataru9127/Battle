@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.UI.GridLayoutGroup;
+using Battle;
 
 /// <summary>
 /// HP・状態異常・能力ランク

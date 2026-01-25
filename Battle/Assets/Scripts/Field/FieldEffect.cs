@@ -1,21 +1,53 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 /// <summary>
-/// 抽象クラス
+/// フィールド抽象クラス
 /// </summary>
-public class FieldEffect : MonoBehaviour
+namespace Field
 {
-    // Start is called before the first frame update
-    void Start()
+    public abstract class FieldEffect
     {
-        
-    }
+        public abstract string Name { get; }
+        public int RemainingTurn { get; protected set; }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        protected FieldEffect(int duration)
+        {
+            RemainingTurn = duration;
+        }
+
+        //フィールド発動時
+        public virtual void OnStart(Battle.BattleContext context)
+        {
+            context.AddLog($"{Name}が ひろがった！");
+        }
+
+        //毎ターン終了時
+        public virtual void OnTurnEnd(Battle.BattleContext context) { }
+
+        //フィールド終了時
+        public virtual void OnEnd(Battle.BattleContext context)
+        {
+            context.AddLog($"{Name}の こうかが きれた！");
+        }
+
+        //ダメージ補正
+        public virtual float ModifyDamage(BattlePokemon attacker, BattlePokemon defender,
+            Waza.Waza waza, float damage)
+        {
+            return damage;
+        }
+
+        //技使用可否 => サイコフィールド用
+        public virtual bool CanUseWaza(BattlePokemon attacker, BattlePokemon defender,
+            Waza.Waza waza)
+        {
+            return true;
+        }
+
+        public void DecreaseTurn()
+        {
+            RemainingTurn--;
+        }
+
+        //解除
+        public bool IsExpired => RemainingTurn <= 0;
     }
 }

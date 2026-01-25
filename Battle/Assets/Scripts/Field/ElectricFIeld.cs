@@ -5,17 +5,22 @@ using UnityEngine;
 /// <summary>
 /// エレキフィールド
 /// </summary>
-public class ElectricFIeld : MonoBehaviour
+namespace Field
 {
-    // Start is called before the first frame update
-    void Start()
+    public class ElectricFIeld : FieldEffect
     {
-        
-    }
+        public override string Name => "エレキフィールド";
+        public ElectricFIeld(int duration) : base(duration) { }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public override float ModifyDamage(BattlePokemon attacker, BattlePokemon defender, Waza.Waza waza, float damage)
+        {
+            //でんきタイプなら 1.3倍
+            if (attacker.IsOnField && waza.Type == PokemonType.Electric)
+            {
+                return damage * 1.3f;
+            }
+
+            return damage;
+        }
     }
 }

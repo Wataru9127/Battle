@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using Battle;
 
 /// <summary>
 /// ¬—A‚Ğ‚é‚İ“™d•¡‚·‚é‚à‚Ì

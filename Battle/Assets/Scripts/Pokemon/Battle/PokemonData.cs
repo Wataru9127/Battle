@@ -9,7 +9,7 @@ public class PokemonData
     public BattlePokemon Owner { get; }
 
     //名前・タイプ
-    public PokemonIdentity Identity { get; }
+    public PokemonBaseInfo BaseInfo { get; }
 
     //種族値・個体値・努力値・せいかく・レベル
     public PokemonGrowth Growth { get; private set; }
@@ -20,9 +20,9 @@ public class PokemonData
     //実数値
     public PokemonStats Stats { get; private set; }
 
-    public PokemonData(PokemonIdentity identity, PokemonGrowth growth, PokemonAbility ability)
+    public PokemonData(PokemonBaseInfo baseInfo, PokemonGrowth growth, PokemonAbility ability)
     {
-        Identity = identity;
+        BaseInfo = baseInfo;
         Growth = growth;
         Ability = ability;
 

@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using Battle;
 
 /// <summary>
 /// こおり
@@ -19,7 +17,7 @@ public class FreezeStatus : NonVolatileStatus
     /// <summary>
     /// 付与時
     /// </summary>
-    public override void OnApply(PokemonCondition condition, BattleContext context)
+    public override void OnApply(PokemonCondition condition, Battle.BattleContext context)
     {
         thawed = false;
         context.AddLog($"{condition}は こおってしまった！");
@@ -28,7 +26,7 @@ public class FreezeStatus : NonVolatileStatus
     /// <summary>
     /// ターン開始時：自然解除判定（20%）
     /// </summary>
-    public override void OnTurnStart(PokemonCondition condition, BattleContext context)
+    public override void OnTurnStart(PokemonCondition condition, Battle.BattleContext context)
     {
         if (context.Random.NextFloat() < 0.2f)
         {
@@ -40,7 +38,7 @@ public class FreezeStatus : NonVolatileStatus
     /// <summary>
     /// 行動可否
     /// </summary>
-    public override bool CanAction(PokemonCondition condition, BattleContext context)
+    public override bool CanAction(PokemonCondition condition, Battle.BattleContext context)
     {
         if (!thawed)
         {
@@ -67,7 +65,7 @@ public class FreezeStatus : NonVolatileStatus
     /// <summary>
     /// ほのお技を使った時
     /// </summary>
-    public void OnUseFireMove(PokemonCondition condition, BattleContext context)
+    public void OnUseFireMove(PokemonCondition condition, Battle.BattleContext context)
     {
         if (!thawed)
         {

@@ -5,17 +5,17 @@ using UnityEngine;
 /// <summary>
 /// ミストフィールド
 /// </summary>
-public class MistyField : MonoBehaviour
+namespace Field
 {
-    // Start is called before the first frame update
-    void Start()
+    public class MistyField : FieldEffect
     {
-        
-    }
+        public override string Name => "ミストフィールド";
+        public MistyField(int duration) : base(duration) { }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        //状態異常を付与するかの判定
+        public bool CanApplyStatus(BattlePokemon target)
+        {
+            return !target.IsOnField;
+        }
     }
 }

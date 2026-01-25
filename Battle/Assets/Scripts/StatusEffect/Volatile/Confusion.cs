@@ -1,4 +1,5 @@
 using UnityEngine;
+using Battle;
 
 /// <summary>
 /// ‚±‚ñ‚ç‚ñ

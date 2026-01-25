@@ -1,3 +1,5 @@
+using Battle;
+
 /// <summary>
 /// ひるみ
 /// ・そのターン行動不能

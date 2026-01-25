@@ -1,7 +1,6 @@
 Scripts
 ├─ Battle
-│   ├─ Battle.cs
-│   ├─ BattleContext.cs
+│   ├─ BattleContext.cs		バトル全体の状態を保持する
 │   ├─ BattleEventDispatcher.cs
 │   ├─ BattlePhase.cs
 │   ├─ BattleResult.cs
@@ -17,23 +16,24 @@ Scripts
 │   ├─ AccuraryCalculation.cs
 │   ├─ CriticalCalculation.cs
 │   ├─ DamageCalculation.cs
-│   ├─ PokemonStatsCalculation.cs
+│   ├─ FieldDurationCalculator.cs	フィールド展開時の持続ターン数計算
+│   ├─ PokemonStatsCalculation.cs	実数値計算
 │   ├─ RandomModifier.cs
 │   └─ TypeEffectiveness.cs
 │
 ├─ Common
 │   ├─ DomainException.cs
-│   ├─ Probability.cs
+│   ├─ Probability.cs	確率計算
 │   ├─ RandomExtensions.cs	ランダム数値
 │   ├─ RangeInt.cs
 │   └─ TurnCounter.cs
 │
 ├─ Field
-│   ├─ ElectricField.cs
-│   ├─ FieldEffect.cs
-│   ├─ GrassyField.cs
-│   ├─ MistyField.cs
-│   └─ PsychicField.cs
+│   ├─ ElectricField.cs	エレキフィールド
+│   ├─ FieldEffect.cs	抽象クラス
+│   ├─ GrassyField.cs	グラスフィールド
+│   ├─ MistyField.cs		ミストフィールド
+│   └─ PsychicField.cs	サイコフィールド
 │
 ├─ Pokemon
 │   ├─ BaseStats.cs		種族値

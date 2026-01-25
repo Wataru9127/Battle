@@ -1,3 +1,5 @@
+using Battle;
+
 /// <summary>
 /// メロメロ
 /// ・50%で行動不能
@@ -35,7 +37,7 @@ public class AttractStatus : VolatileStatus
         }
 
         // 50%で行動不能
-        if (context.Random.NextFloat() < 0.5f)
+        if (Common.Probability.Check(context.Random, 0.5f))
         {
             context.AddLog($"{target.Name}は メロメロで うごけない！");
             return false;

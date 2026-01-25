@@ -1,3 +1,5 @@
+using Battle;
+
 /// <summary>
 /// ‚¿‚å‚¤‚Í‚Â
 /// </summary>

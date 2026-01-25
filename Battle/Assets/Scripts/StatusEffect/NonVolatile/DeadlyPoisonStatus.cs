@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using Battle;
 using UnityEngine;
 
 /// <summary>
@@ -16,7 +15,7 @@ public class DeadlyPoisonStatus : NonVolatileStatus
     /// <summary>
     /// 付与時
     /// </summary>
-    public override void OnApply(PokemonCondition condition, BattleContext context)
+    public override void OnApply(PokemonCondition condition, Battle.BattleContext context)
     {
         turnCount = 0;
         context.AddLog($"{condition}は {Name}を あびた！");
@@ -25,7 +24,7 @@ public class DeadlyPoisonStatus : NonVolatileStatus
     /// <summary>
     /// ターン終了時ダメージ
     /// </summary>
-    public override void OnTurnEnd(PokemonCondition condition, BattleContext context)
+    public override void OnTurnEnd(PokemonCondition condition, Battle.BattleContext context)
     {
         turnCount++;
 

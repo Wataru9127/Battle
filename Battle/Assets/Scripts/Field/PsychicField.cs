@@ -1,21 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 /// <summary>
 /// サイコフィールド
 /// </summary>
-public class PsychicField : MonoBehaviour
+namespace Field
 {
-    // Start is called before the first frame update
-    void Start()
+    public class PsychicField : FieldEffect
     {
-        
-    }
+        public override string Name => "サイコフィールド";
+        public PsychicField(int duration) : base(duration) { }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public override bool CanUseWaza(BattlePokemon attacker, BattlePokemon defender, Waza.Waza waza)
+        {
+            if (!defender.IsOnField) return true;
+            if (!waza.IsWazaPriority) return true;
+
+            return false;
+        }
     }
 }

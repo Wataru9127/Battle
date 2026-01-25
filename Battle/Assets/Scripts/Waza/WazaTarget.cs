@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// 単体 / 全体
+/// ワザの対象 => 単体 / 全体
 /// </summary>
 public class WazaTarget : MonoBehaviour
 {

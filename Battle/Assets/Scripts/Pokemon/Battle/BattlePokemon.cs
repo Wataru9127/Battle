@@ -1,3 +1,9 @@
+using Battle;
+//using Ability;
+
+/// <summary>
+/// バトル状況も含めたポケモンの情報
+/// </summary>
 public class BattlePokemon
 {
     //ポケモンの情報
@@ -6,14 +12,19 @@ public class BattlePokemon
     //現在の状態
     public PokemonCondition Condition { get; }
 
-    // 場にいるか
+    //場にいるか
     public bool IsOnField { get; private set; }
 
-    // ひんし判定
+    //ひんし判定
     public bool IsFainted => Condition.IsFainted;
 
     //簡易取得用の名前
-    public string Name => PokemonData.Identity.Name;
+    public string Name => PokemonData.BaseInfo.Name;
+
+    public void OnSwitchIn(BattleContext context)
+    {
+
+    }
 
     /// <summary>
     /// 交代可否判定
@@ -31,4 +42,6 @@ public class BattlePokemon
         }
         return true;
     }
+
+    
 }
