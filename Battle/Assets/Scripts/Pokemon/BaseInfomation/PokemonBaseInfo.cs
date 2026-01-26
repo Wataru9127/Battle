@@ -13,13 +13,4 @@ public class PokemonBaseInfo
 
     //タイプ
     public IReadOnlyList<PokemonType> Types { get; private set; }
-
-    /// <summary>
-    /// タイプ変更 => フォルムチェンジ・メガシンカ用
-    /// </summary>
-    /// <param name="newTypes"></param>
-    public void SetTypes(IReadOnlyList<PokemonType> newTypes)
-    {
-        Types = newTypes;
-    }
 }

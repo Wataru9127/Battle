@@ -28,11 +28,11 @@ namespace Field
             context.AddLog($"{Name}の こうかが きれた！");
         }
 
-        //ダメージ補正
-        public virtual float ModifyDamage(BattlePokemon attacker, BattlePokemon defender,
-            Waza.WazaBase waza, float damage)
+        //ダメージ倍率の取得
+        public virtual float GetDamageRate(BattlePokemon attacker,
+            BattlePokemon defender, Waza.WazaBase waza)
         {
-            return damage;
+            return 1;
         }
 
         //技使用可否 => サイコフィールド用

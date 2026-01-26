@@ -22,11 +22,11 @@ namespace Weather
         //フィールド終了時
         public virtual void OnEnd(Battle.BattleContext context) { }
 
-        //技威力補正
-        public virtual float ModifyDamage(BattlePokemon attacker, BattlePokemon defender,
-            Waza.WazaBase waza, float damage)
+        //ダメージ倍率の取得
+        public virtual float GetDamageRate(BattlePokemon attacker, BattlePokemon defender,
+            Waza.WazaBase waza)
         {
-            return damage;
+            return 1;
         }
 
         public bool Tick()

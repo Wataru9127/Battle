@@ -19,16 +19,16 @@ namespace Field
         /// <summary>
         /// ドラゴンタイプの技の威力 / 2
         /// </summary>
-        public override float ModifyDamage(BattlePokemon attacker, BattlePokemon defender, Waza.WazaBase waza, float damage)
+        public override float GetDamageRate(BattlePokemon attacker, BattlePokemon defender, Waza.WazaBase waza)
         {
             //フィールドの影響を受けない状態 => 無視
-            if (!attacker.IsOnField) return damage;
+            if (!attacker.IsOnField) return 1;
 
             //技タイプがドラゴン => 0.5倍
-            if (waza.Type == Dragon) return damage * 0.5f;
+            if (waza.Type == Dragon) return 0.5f;
 
             //それ以外 => 無視
-            return damage;
+            return 1;
         }
     }
 }

@@ -2,6 +2,7 @@ using Battle;
 using Waza;
 using Weather;
 using Common;
+using System.Collections.Generic;
 
 /// <summary>
 /// ダメージ計算
@@ -10,6 +11,9 @@ namespace Calculator
 {
     public class DamageCalculator
     {
+        /// <summary>
+        /// ダメージ計算
+        /// </summary>
         public static int Caluculate(BattleContext context, BattlePokemon attacker, BattlePokemon defender, WazaBase waza)
         {
             //ダメージ技でなければ 0
@@ -17,7 +21,7 @@ namespace Calculator
 
             //技威力の取得
             int power = waza.ModifyPower(attacker, defender);
-            if (power > 0) { return 0; }
+            if (power <= 0) { return 0; }
 
             //攻撃側・防御側の実数値を取得
             int attack = GetStatValue(attacker, waza.AttackStat);
@@ -31,33 +35,53 @@ namespace Calculator
             //(攻撃側のレベル * 2 / 5 + 2) => 切り捨て
             //  * わざの威力 * 攻撃 or 特攻 / 防御 or 特防 => 切り捨て
             //  / 50 + 2 => 切り捨て
-            float damage = (int)(attacker.PokemonData.Growth.Level * 2f / 5f + 2f);
-            damage *= (int)(power * attack / defense);
-            damage = (int)damage / 50 + 2;
+            int baseDamage = (attacker.PokemonData.Growth.Level * 2) / 5 + 2;
+            baseDamage *= (power * attack / defense);
+            baseDamage = baseDamage / 50 + 2;
+            float damage = baseDamage;
 
             //②タイプ一致補正
             damage *= GetStabRate(attacker, waza.Type);
 
             //③タイプ相性計算
-            damage *= TypeEffectiveness.GetRate(waza.Type, defender.PokemonData.BaseInfo.Types);
+            IReadOnlyList<PokemonType> type;
+
+            //テラスタルしている => テラスタイプで計算
+            if (defender.IsTerastallized)
+            {
+                type = new List<PokemonType>
+                {
+                    defender.TerastalType
+                };
+            }
+            //フォルムチェンジ・メガシンカしている => 変身後のタイプで計算
+            else if (defender.currentForm != null)
+            {
+                type = defender.currentForm.Types;
+            }
+            //なにも変化していない => 元のタイプで計算
+            else
+            {
+                type = defender.PokemonData.BaseInfo.Types;
+            }
+
+            float typeRate = TypeEffectiveness.GetRate(waza.Type, type);
+            if (typeRate == 0) return 0;    //相性無効は即return
+            damage *= typeRate;
 
             //④天候計算
-            if (context.CurrentWeather != null)
-            {
-                damage = context.CurrentWeather.ModifyDamage(attacker, defender, waza, damage);
-            }
+            damage *= context.CurrentWeather?.GetDamageRate(attacker, defender, waza) ?? 1;
 
             //⑤フィールド計算
-            if (context.CurrentField != null)
-            {
-                damage = context.CurrentField.ModifyDamage(attacker, defender, waza, damage);
-            }
+            damage *= context.CurrentField?.GetDamageRate(attacker, defender, waza) ?? 1;
 
             //⑥急所判定
             damage *= CriticalCalculator.GetModifier();
 
             //⑦乱数計算
             damage *= RandomModifier.Get();
+
+            if (damage <= 0) return 0;
 
             //⑧最低ダメージ保証
             return System.Math.Max(1, (int)damage);
