@@ -1,3 +1,6 @@
+using Battle;
+using Calculator;
+using Waza;
 using static PokemonType;
 
 /// <summary>
@@ -5,7 +8,7 @@ using static PokemonType;
 /// </summary>
 namespace Field
 {
-    public class ElectricFIeld : FieldEffect
+    public class ElectricFIeld : FieldBase
     {
         public override string Name => "エレキフィールド";
         public ElectricFIeld(int duration) : base(duration) { }
@@ -23,6 +26,17 @@ namespace Field
 
             //それ以外 => 無視
             return 1;
+        }
+
+        /// <summary>
+        /// 地面にいるポケモンは眠らせない
+        /// </summary>
+        public override bool CanUseWaza(BattlePokemon attacker, BattlePokemon defender, WazaBase waza)
+        {
+            if (!defender.IsOnField) return true;
+            if (waza.EffectType == WazaEffectType.Sleep) return false;
+
+            return true;
         }
     }
 }

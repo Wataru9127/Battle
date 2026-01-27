@@ -3,12 +3,12 @@
 /// </summary>
 namespace Field
 {
-    public abstract class FieldEffect
+    public abstract class FieldBase
     {
         public abstract string Name { get; }
         public int RemainingTurn { get; protected set; }
 
-        protected FieldEffect(int duration)
+        protected FieldBase(int duration)
         {
             RemainingTurn = duration;
         }
@@ -44,7 +44,10 @@ namespace Field
 
         public bool Tick()
         {
-            RemainingTurn--;
+            if (RemainingTurn > 0)
+            {
+                RemainingTurn--;
+            }
             return IsExpired;
         }
 

@@ -6,7 +6,7 @@ using Waza;
 /// </summary>
 namespace Field
 {
-    public class PsychicField : FieldEffect
+    public class PsychicField : FieldBase
     {
         public override string Name => "サイコフィールド";
         public PsychicField(int duration) : base(duration) { }

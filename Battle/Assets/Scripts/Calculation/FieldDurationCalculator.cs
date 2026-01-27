@@ -1,3 +1,6 @@
+using Battle;
+using System;
+
 namespace Calculator
 {
     /// <summary>
@@ -5,17 +8,27 @@ namespace Calculator
     /// </summary>
     public static class FieldDurationCalculator
     {
-        public static int Calculate(BattlePokemon user, int baseTurn)
+        public static int Calculate(BattleContext context, BattlePokemon owner, int baseTurn)
         {
-            int turn = baseTurn;
+            int duration = baseTurn;
 
-            //アイテム(グランドコード)で持続ターン増加
-            //if (user.HasItem(ItemID.FieldExtender))
+            //========== 持ち物補正 ==========
+            //if (owner.HeldItem != null)
             //{
-            //    turn += 3;
+            //    if (owner.HeldItem.ID == ItemID.GrandTerrain)
+            //    {
+            //        duration = 8;
+            //    }
             //}
 
-            return turn;
+            // ===== 特性補正（将来用）=====
+            if (owner.PokemonData.Ability != null)
+            {
+                // 例：フィールド延長系特性を作りたくなったらここ
+            }
+
+            // 最低 1 ターン保証
+            return Math.Max(1, duration);
         }
     }
 }

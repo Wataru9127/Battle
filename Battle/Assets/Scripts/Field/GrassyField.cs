@@ -1,3 +1,4 @@
+using System;
 using Waza;
 using static PokemonType;
 
@@ -6,7 +7,7 @@ using static PokemonType;
 /// </summary>
 namespace Field
 {
-    public class GrassyField : FieldEffect
+    public class GrassyField : FieldBase
     {
         public override string Name => "グラスフィールド";
         public GrassyField(int duration) : base(duration) { }
@@ -16,11 +17,14 @@ namespace Field
         {
             foreach (var pokemon in context.GetAllBattlePokemon())
             {
+                //きぜつしているポケモンは無視
+                if (pokemon.IsFainted) continue;
+
                 //地面にいないポケモンは無視
                 if (!pokemon.IsOnField) continue;
 
                 //最大体力の 1/16 を回復
-                int heal = pokemon.Condition.MaxHP / 16;
+                int heal = Math.Max(1, pokemon.Condition.MaxHP / 16);
                 pokemon.Condition.Heal(heal);
 
                 context.AddLog($"{pokemon.Name}は グラスフィールドで かいふくした！");

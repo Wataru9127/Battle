@@ -5,7 +5,7 @@ using static PokemonType;
 /// </summary>
 namespace Field
 {
-    public class MistyField : FieldEffect
+    public class MistyField : FieldBase
     {
         public override string Name => "ミストフィールド";
         public MistyField(int duration) : base(duration) { }
@@ -13,7 +13,11 @@ namespace Field
         //状態異常を付与するかの判定
         public bool CanApplyStatus(BattlePokemon target)
         {
-            return !target.IsOnField;
+            //地面にいない => 有効
+            if (!target.IsOnField) return true;
+
+            //それ以外 => 無効
+            return false;
         }
 
         /// <summary>

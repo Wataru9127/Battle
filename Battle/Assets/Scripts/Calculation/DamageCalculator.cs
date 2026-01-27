@@ -70,10 +70,10 @@ namespace Calculator
             damage *= typeRate;
 
             //‡C“VŒóŒvZ
-            damage *= context.CurrentWeather?.GetDamageRate(attacker, defender, waza) ?? 1;
+            damage *= context.WeatherManager.Current.GetDamageRate(attacker, defender, waza);
 
             //‡DƒtƒB[ƒ‹ƒhŒvZ
-            damage *= context.CurrentField?.GetDamageRate(attacker, defender, waza) ?? 1;
+            damage *= context.FieldManager.Current.GetDamageRate(attacker, defender, waza);
 
             //‡E‹}Š”»’è
             damage *= CriticalCalculator.GetModifier();

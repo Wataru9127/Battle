@@ -1,21 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 /// <summary>
 /// ‚ ‚ß
 /// </summary>
-public class Rain : MonoBehaviour
+namespace Weather
 {
-    // Start is called before the first frame update
-    void Start()
+    public class Rain : WeatherBase
     {
-        
-    }
+        public override string Name => "‚ ‚ß";
+        public Rain(int duration) : base(duration) { }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

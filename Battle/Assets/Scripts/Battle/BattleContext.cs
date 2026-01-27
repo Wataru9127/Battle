@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using Battle;
 using Field;
+using Waza;
 using Weather;
 
 /// <summary>
@@ -25,8 +25,9 @@ namespace Battle
 
 
         // ===== フィールド・天候 =====
-        public FieldEffect CurrentField { get; private set; }
-        public Weather.Weather CurrentWeather { get; private set; }
+        public FieldManager FieldManager { get; }
+        public WeatherManager WeatherManager { get; }
+
 
 
         // ===== 参加ポケモン =====
@@ -36,6 +37,8 @@ namespace Battle
         public BattleContext(IEnumerable<BattlePokemon> battlePokemon)
         {
             battlePokemons.AddRange(battlePokemon);
+            FieldManager = new FieldManager();
+            WeatherManager = new WeatherManager();
         }
 
         /// <summary>
@@ -71,83 +74,15 @@ namespace Battle
         /// フィールド展開
         /// </summary>
         /// <param name="field"></param>
-        public void SetField(FieldEffect field)
+        public void SetField(FieldBase field)
         {
-            //フィールド展開中に同じフィールドが展開されようとしたとき
-            //=> なにもしない
-            if (CurrentField != null && 
-                CurrentField.GetType() == field.GetType())
-            {
-                return;
-            }
-
-            //フィールド展開中に別フィールドが展開されようとしたとき
-            //=> 展開中のフィールドを終了して新しいフィールド展開
-            if (CurrentField != null)
-            {
-                CurrentField.OnEnd(this);
-            }
-
-            CurrentField = field;
-
-            if (CurrentField != null)
-            {
-                CurrentField.OnStart(this);
-            }
-        }
-
-        /// <summary>
-        /// メイカー特性処理
-        /// </summary>
-        public void TryActivateFieldMaker(bool allowOverride)
-        {
-            /*if (CurrentField != null && !allowOverride) return;
-
-            var makers = new List<(BattlePokemon pokemon, FieldMakerAbility ability)>();
-
-            foreach (var pokemon in GetAllBattlePokemon())
-            {
-                //きぜつ判定
-                if (pokemon.IsFainted) continue;
-
-                //フィールドメイカーを持つポケモンを取得
-                if (pokemon.PokemonData.Ability is FieldMakerAbility maker)
-                {
-                    makers.Add((pokemon, maker));
-                }
-            }
-
-            //フィールドメイカーを持つポケモンがいなかったら終了
-            if (makers.Count == 0) return;
-
-            makers.Sort((a, b) =>
-            {
-                int diff = b.pokemon.PokemonData.Stats.GetStats(PokemonStatType.Speed).CompareTo(a.pokemon.PokemonData.Stats.GetStats(PokemonStatType.Speed));
-
-                if (diff != 0) return diff;
-
-                //同速ならランダム
-                return Random.Next(2) == 0 ? -1 : 1;
-            });
-
-            var winner = makers[0];
-            winner.ability.Activate(this, winner.pokemon);*/
+            FieldManager.SetField(field, this);
         }
 
         // ===== 天候管理 =====
-        public void SetWeather(Weather.Weather weather)
+        public void SetWeather(WeatherBase weather, BattlePokemon owner)
         {
-            if (CurrentWeather != null)
-            {
-                CurrentWeather.OnEnd(this);
-            }
-
-            CurrentWeather = weather;
-
-            if (CurrentWeather != null)
-            {
-                CurrentWeather.OnStart(this);
-            }
+            WeatherManager.SetWeather(weather, this, owner);
         }
 
 
@@ -156,34 +91,81 @@ namespace Battle
         public void EndTurn()
         {
             //フィールド処理
-            if (CurrentField != null)
-            {
-                CurrentField.OnTurnEnd(this);
-
-                if (CurrentField.Tick())
-                {
-                    var expiredField = CurrentField;
-
-                    CurrentField = null;
-                    expiredField.OnEnd(this);
-                    
-
-                    //フィールドメイカーのチェック
-                    TryActivateFieldMaker(allowOverride: false);
-                }
-            }
+            FieldManager.OnTurnEnd(this);
 
             //天候処理
-            if (CurrentWeather != null)
-            {
-                CurrentWeather.OnTurnEnd(this);
+            WeatherManager.OnTurnEnd(this);
+        }
 
-                if (CurrentWeather.Tick())
-                {
-                    CurrentWeather.OnEnd(this);
-                    CurrentWeather = null;
-                }
+        /// <summary>
+        /// 技の追加効果を許すかどうかの判断
+        /// </summary>
+        public bool CanApplyAdditionalEffect(BattlePokemon attacker, BattlePokemon defender, WazaBase wazaBase)
+        {
+            //対象が場にいない
+            if (defender == null || defender.IsFainted) return false;
+
+            //フィールド判定
+            CanApplyAdditionalEffectByField(attacker, defender, wazaBase);
+
+            //天候判定
+            CanApplyAdditionalEffectByWeather(attacker, defender, wazaBase);
+
+            //特性判定
+            CanApplyAdditionalEffectByAbility(attacker, defender, wazaBase);
+
+            //もちもの判定
+            CanApplyAdditionalEffectByItem(attacker, defender, wazaBase);
+
+            return true;
+        }
+
+        /// <summary>
+        /// フィールドでの無効化判定
+        /// </summary>
+        private bool CanApplyAdditionalEffectByField(BattlePokemon attacker, BattlePokemon defender, WazaBase wazaBase)
+        {
+            //ミストフィールド => 状態異常技を無視する
+            if (FieldManager.Current is Field.MistyField)
+            {
+                if (defender.IsOnField && wazaBase.CausesStatusAilment) return false;
             }
+
+            /*その他、フィールドでの技判定の無効化*/
+
+            return true;
+        }
+
+        /// <summary>
+        /// 天候による無効化判定
+        /// </summary>
+        private bool CanApplyAdditionalEffectByWeather(BattlePokemon attacker, BattlePokemon defender, WazaBase wazaBase)
+        {
+            /*追加効果を受けない天候の判断*/
+
+            return true;
+        }
+
+        /// <summary>
+        /// 特性での無効化判定
+        /// </summary>
+        private bool CanApplyAdditionalEffectByAbility(BattlePokemon attacker, BattlePokemon defender, WazaBase wazaBase)
+        {
+            /*追加効果を受けない特性の判断
+             りんぷん*/
+
+            return true;
+        }
+
+        /// <summary>
+        /// もちものでの無効化判定
+        /// </summary>
+        private bool CanApplyAdditionalEffectByItem(BattlePokemon attacker, BattlePokemon defender, WazaBase wazaBase)
+        {
+            /*追加効果を受けない持ち物の判断
+             現状、おんみつマント のみ*/
+
+            return true;
         }
     }
 }

@@ -1,25 +1,32 @@
+using Calculator;
+
 /// <summary>
 /// 基底クラス
 /// </summary>
 namespace Weather
 {
-    public abstract class Weather
+    public abstract class WeatherBase
     {
         public abstract string Name { get; }
         public int RemainingTurn { get; protected set; }
 
-        protected Weather(int duration)
+        protected virtual int BaseDuration => 5;
+
+        protected WeatherBase(int duration)
         {
             RemainingTurn = duration;
         }
 
         //フィールド発動時
-        public virtual void OnStart(Battle.BattleContext context) { }
+        public virtual void OnStart(Battle.BattleContext context, BattlePokemon owner)
+        {
+            RemainingTurn = WeatherDurationCalculator.Calculator(context, owner, BaseDuration);
+        }
 
         //毎ターン終了時
         public virtual void OnTurnEnd(Battle.BattleContext context) { }
 
-        //フィールド終了時
+        //天候終了時
         public virtual void OnEnd(Battle.BattleContext context) { }
 
         //ダメージ倍率の取得
@@ -31,7 +38,10 @@ namespace Weather
 
         public bool Tick()
         {
-            RemainingTurn--;
+            if (RemainingTurn > 0)
+            {
+                RemainingTurn--;
+            }
             return IsExpired;
         }
 

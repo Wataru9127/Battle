@@ -84,6 +84,7 @@ public class BattlePokemon
         var newBaseStats = form.BaseStats;
 
         //新しい種族値でステータス計算
+        //変更後のHP処理
     }
 
     /// <summary>

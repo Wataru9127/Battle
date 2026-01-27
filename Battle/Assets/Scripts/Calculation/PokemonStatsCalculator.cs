@@ -104,13 +104,15 @@ public static class PokemonStatsCalculator
     }
 
     /// <summary>
-    /// 能力ランク込みの実数値の取得
+    /// バトル中の実数値の取得
     /// ・ランク >= 0  => 実数値 × (2 + ランク) / 2
     /// ・ランク < 0   => 実数値 × 2 / (2 - ランク)
     /// ただし、HP・命中率はのぞく
     /// </summary>
-    public static int CalculateInRank(BattlePokemon pokemon, PokemonStatType statType)
+    public static int CalculateStat(BattlePokemon pokemon, PokemonStatType statType)
     {
+        int returnint;
+
         //現在の能力ランクを取得
         int rank = pokemon.Condition.GetRank(statType);
 
@@ -120,11 +122,17 @@ public static class PokemonStatsCalculator
         //ランク補正をかける
         if (rank >= 0)
         {
-            return Mathf.FloorToInt(stat * (2f + rank) / 2f);
+            returnint = Mathf.FloorToInt(stat * (2f + rank) / 2f);
         }
         else
         {
-            return Mathf.FloorToInt(stat * 2f / (2f - rank));
+            returnint = Mathf.FloorToInt(stat * 2f / (2f - rank));
         }
+
+        /*状態異常、特性、アイテム、フィールド、追い風 などの
+         実数値に絡んでくるものを計算する*/
+
+        //最低値 1 を保証
+        return Mathf.Max(1, returnint);
     }
 }
