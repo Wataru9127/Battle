@@ -39,4 +39,17 @@ public class PokemonData
     {
         Growth = growth;
     }
+
+    /// <summary>
+    /// フォルムチェンジ・メガシンカ込みの種族値を返す
+    /// </summary>
+    /// <param name="form"></param>
+    /// <returns></returns>
+    public BaseStats GetBaseStats(FormChangeData form)
+    {
+        return Growth.BaseStats;
+        //if (form != null)
+        //if (FormStats.TryGetValue(form, out var stats))
+        //    return stats;
+    }
 }

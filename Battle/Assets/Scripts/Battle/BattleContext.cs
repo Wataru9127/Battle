@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Common;
 using Field;
 using Waza;
 using Weather;
@@ -14,6 +15,9 @@ namespace Battle
 {
     public class BattleContext
     {
+        //イベント通知
+        public BattleEventDispatcher EventDispatcher { get; }
+
         //乱数源
         public Random Random { get; } = new Random();
 
@@ -21,7 +25,20 @@ namespace Battle
         private readonly List<string> log = new();
         public IReadOnlyList<string> Log => log;
 
-        
+        //ターン数
+        public TurnCounter TurnCounter { get; } = new TurnCounter();
+
+        //行動関連
+        public List<BattleAction> ActionQueue { get; } = new List<BattleAction>();
+        public IActionProvider ActionProvider { get; set; }
+
+        //バトル状態
+        public bool IsBattleFinished { get; set; }
+        public BattleResult Result { get; set; }
+
+
+
+
 
 
         // ===== フィールド・天候 =====
@@ -39,6 +56,8 @@ namespace Battle
             battlePokemons.AddRange(battlePokemon);
             FieldManager = new FieldManager();
             WeatherManager = new WeatherManager();
+
+            EventDispatcher = new BattleEventDispatcher(this);
         }
 
         /// <summary>
@@ -52,7 +71,7 @@ namespace Battle
             //yield break;
         }
 
-        
+
 
 
 
@@ -74,9 +93,9 @@ namespace Battle
         /// フィールド展開
         /// </summary>
         /// <param name="field"></param>
-        public void SetField(FieldBase field)
+        public void SetField(FieldBase field, BattlePokemon owner)
         {
-            FieldManager.SetField(field, this);
+            FieldManager.SetField(field, this, owner);
         }
 
         // ===== 天候管理 =====
@@ -87,7 +106,10 @@ namespace Battle
 
 
 
-        // ===== ターン終了処理 =====
+        // ===== ターン管理 =====
+        /// <summary>
+        /// ターン終了処理
+        /// </summary>
         public void EndTurn()
         {
             //フィールド処理
@@ -166,6 +188,18 @@ namespace Battle
              現状、おんみつマント のみ*/
 
             return true;
+        }
+
+        /// <summary>
+        /// 勝敗判定
+        /// </summary>
+        public bool CheckBattleResult(out BattleResult result)
+        {
+            result = null;
+
+            /*全滅判定*/
+
+            return false;
         }
     }
 }

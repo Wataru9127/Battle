@@ -1,12 +1,182 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\ktc\\Desktop\\\u65B0\u3057\u3044\u30D5\u30A9\u30EB\u30C0\u30FC (2)\\Battle\\",
-  "Documents": [],
+  "WorkspaceRootPath": "C:\\Users\\ktc\\Desktop\\\u65B0\u3057\u3044\u30D5\u30A9\u30EB\u30C0\u30FC\\Battle\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D4C7FF25-AE12-923C-4213-9C998BA2D5CC}|Assembly-CSharp.csproj|C:\\Users\\ktc\\Desktop\\\u65B0\u3057\u3044\u30D5\u30A9\u30EB\u30C0\u30FC\\Battle\\assets\\scripts\\battle\\battleturn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D4C7FF25-AE12-923C-4213-9C998BA2D5CC}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\battle\\battleturn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D4C7FF25-AE12-923C-4213-9C998BA2D5CC}|Assembly-CSharp.csproj|c:\\users\\ktc\\desktop\\\u65B0\u3057\u3044\u30D5\u30A9\u30EB\u30C0\u30FC\\battle\\assets\\scripts\\pokemon\\battle\\pokemondata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D4C7FF25-AE12-923C-4213-9C998BA2D5CC}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\pokemon\\battle\\pokemondata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D4C7FF25-AE12-923C-4213-9C998BA2D5CC}|Assembly-CSharp.csproj|C:\\Users\\ktc\\Desktop\\\u65B0\u3057\u3044\u30D5\u30A9\u30EB\u30C0\u30FC\\Battle\\assets\\scripts\\field\\fieldmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D4C7FF25-AE12-923C-4213-9C998BA2D5CC}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\field\\fieldmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D4C7FF25-AE12-923C-4213-9C998BA2D5CC}|Assembly-CSharp.csproj|C:\\Users\\ktc\\Desktop\\\u65B0\u3057\u3044\u30D5\u30A9\u30EB\u30C0\u30FC\\Battle\\assets\\scripts\\pokemon\\battle\\battlepokemon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D4C7FF25-AE12-923C-4213-9C998BA2D5CC}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\pokemon\\battle\\battlepokemon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D4C7FF25-AE12-923C-4213-9C998BA2D5CC}|Assembly-CSharp.csproj|C:\\Users\\ktc\\Desktop\\\u65B0\u3057\u3044\u30D5\u30A9\u30EB\u30C0\u30FC\\Battle\\assets\\scripts\\calculation\\pokemonstatscalculator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D4C7FF25-AE12-923C-4213-9C998BA2D5CC}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\calculation\\pokemonstatscalculator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D4C7FF25-AE12-923C-4213-9C998BA2D5CC}|Assembly-CSharp.csproj|C:\\Users\\ktc\\Desktop\\\u65B0\u3057\u3044\u30D5\u30A9\u30EB\u30C0\u30FC\\Battle\\assets\\scripts\\pokemon\\baseinfomation\\formchangedata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D4C7FF25-AE12-923C-4213-9C998BA2D5CC}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\pokemon\\baseinfomation\\formchangedata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D4C7FF25-AE12-923C-4213-9C998BA2D5CC}|Assembly-CSharp.csproj|C:\\Users\\ktc\\Desktop\\\u65B0\u3057\u3044\u30D5\u30A9\u30EB\u30C0\u30FC\\Battle\\assets\\scripts\\battle\\battlecontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D4C7FF25-AE12-923C-4213-9C998BA2D5CC}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\battle\\battlecontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D4C7FF25-AE12-923C-4213-9C998BA2D5CC}|Assembly-CSharp.csproj|C:\\Users\\ktc\\Desktop\\\u65B0\u3057\u3044\u30D5\u30A9\u30EB\u30C0\u30FC\\Battle\\assets\\scripts\\battle\\battleeventdispatcher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D4C7FF25-AE12-923C-4213-9C998BA2D5CC}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\battle\\battleeventdispatcher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D4C7FF25-AE12-923C-4213-9C998BA2D5CC}|Assembly-CSharp.csproj|C:\\Users\\ktc\\Desktop\\\u65B0\u3057\u3044\u30D5\u30A9\u30EB\u30C0\u30FC\\Battle\\assets\\scripts\\battle\\battleevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D4C7FF25-AE12-923C-4213-9C998BA2D5CC}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\battle\\battleevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D4C7FF25-AE12-923C-4213-9C998BA2D5CC}|Assembly-CSharp.csproj|C:\\Users\\ktc\\Desktop\\\u65B0\u3057\u3044\u30D5\u30A9\u30EB\u30C0\u30FC\\Battle\\assets\\scripts\\battle\\battlephase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D4C7FF25-AE12-923C-4213-9C998BA2D5CC}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\battle\\battlephase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "BattlePokemon.cs",
+              "DocumentMoniker": "C:\\Users\\ktc\\Desktop\\\u65B0\u3057\u3044\u30D5\u30A9\u30EB\u30C0\u30FC\\Battle\\Assets\\Scripts\\Pokemon\\Battle\\BattlePokemon.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Pokemon\\Battle\\BattlePokemon.cs",
+              "ToolTip": "C:\\Users\\ktc\\Desktop\\\u65B0\u3057\u3044\u30D5\u30A9\u30EB\u30C0\u30FC\\Battle\\Assets\\Scripts\\Pokemon\\Battle\\BattlePokemon.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Pokemon\\Battle\\BattlePokemon.cs",
+              "ViewState": "AgIAAIMAAAAAAAAAAAAawKYAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-28T03:38:21.527Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "FieldManager.cs",
+              "DocumentMoniker": "C:\\Users\\ktc\\Desktop\\\u65B0\u3057\u3044\u30D5\u30A9\u30EB\u30C0\u30FC\\Battle\\Assets\\Scripts\\Field\\FieldManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Field\\FieldManager.cs",
+              "ToolTip": "C:\\Users\\ktc\\Desktop\\\u65B0\u3057\u3044\u30D5\u30A9\u30EB\u30C0\u30FC\\Battle\\Assets\\Scripts\\Field\\FieldManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Field\\FieldManager.cs",
+              "ViewState": "AgIAAFYAAAAAAAAAAAAMwGoAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-28T03:32:58.527Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PokemonData.cs",
+              "DocumentMoniker": "C:\\Users\\ktc\\Desktop\\\u65B0\u3057\u3044\u30D5\u30A9\u30EB\u30C0\u30FC\\Battle\\Assets\\Scripts\\Pokemon\\Battle\\PokemonData.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Pokemon\\Battle\\PokemonData.cs",
+              "ToolTip": "C:\\Users\\ktc\\Desktop\\\u65B0\u3057\u3044\u30D5\u30A9\u30EB\u30C0\u30FC\\Battle\\Assets\\Scripts\\Pokemon\\Battle\\PokemonData.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Pokemon\\Battle\\PokemonData.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAawCsAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-28T03:30:22.305Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "PokemonStatsCalculator.cs",
+              "DocumentMoniker": "C:\\Users\\ktc\\Desktop\\\u65B0\u3057\u3044\u30D5\u30A9\u30EB\u30C0\u30FC\\Battle\\Assets\\Scripts\\Calculation\\PokemonStatsCalculator.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Calculation\\PokemonStatsCalculator.cs",
+              "ToolTip": "C:\\Users\\ktc\\Desktop\\\u65B0\u3057\u3044\u30D5\u30A9\u30EB\u30C0\u30FC\\Battle\\Assets\\Scripts\\Calculation\\PokemonStatsCalculator.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Calculation\\PokemonStatsCalculator.cs",
+              "ViewState": "AgIAAGUAAAAAAAAAAAAUwHAAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-28T03:25:05.699Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "BattleTurn.cs",
+              "DocumentMoniker": "C:\\Users\\ktc\\Desktop\\\u65B0\u3057\u3044\u30D5\u30A9\u30EB\u30C0\u30FC\\Battle\\Assets\\Scripts\\Battle\\BattleTurn.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Battle\\BattleTurn.cs",
+              "ToolTip": "C:\\Users\\ktc\\Desktop\\\u65B0\u3057\u3044\u30D5\u30A9\u30EB\u30C0\u30FC\\Battle\\Assets\\Scripts\\Battle\\BattleTurn.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Battle\\BattleTurn.cs",
+              "ViewState": "AgIAAEsAAAAAAAAAAAAMwFkAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-28T02:09:35.119Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "FormChangeData.cs",
+              "DocumentMoniker": "C:\\Users\\ktc\\Desktop\\\u65B0\u3057\u3044\u30D5\u30A9\u30EB\u30C0\u30FC\\Battle\\Assets\\Scripts\\Pokemon\\BaseInfomation\\FormChangeData.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Pokemon\\BaseInfomation\\FormChangeData.cs",
+              "ToolTip": "C:\\Users\\ktc\\Desktop\\\u65B0\u3057\u3044\u30D5\u30A9\u30EB\u30C0\u30FC\\Battle\\Assets\\Scripts\\Pokemon\\BaseInfomation\\FormChangeData.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Pokemon\\BaseInfomation\\FormChangeData.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-28T03:24:50.869Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "BattleContext.cs",
+              "DocumentMoniker": "C:\\Users\\ktc\\Desktop\\\u65B0\u3057\u3044\u30D5\u30A9\u30EB\u30C0\u30FC\\Battle\\Assets\\Scripts\\Battle\\BattleContext.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Battle\\BattleContext.cs",
+              "ToolTip": "C:\\Users\\ktc\\Desktop\\\u65B0\u3057\u3044\u30D5\u30A9\u30EB\u30C0\u30FC\\Battle\\Assets\\Scripts\\Battle\\BattleContext.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Battle\\BattleContext.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAASwB8AAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-28T03:13:33.598Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "BattlePhase.cs",
+              "DocumentMoniker": "C:\\Users\\ktc\\Desktop\\\u65B0\u3057\u3044\u30D5\u30A9\u30EB\u30C0\u30FC\\Battle\\Assets\\Scripts\\Battle\\BattlePhase.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Battle\\BattlePhase.cs",
+              "ToolTip": "C:\\Users\\ktc\\Desktop\\\u65B0\u3057\u3044\u30D5\u30A9\u30EB\u30C0\u30FC\\Battle\\Assets\\Scripts\\Battle\\BattlePhase.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Battle\\BattlePhase.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-28T02:09:27.011Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "BattleEvent.cs",
+              "DocumentMoniker": "C:\\Users\\ktc\\Desktop\\\u65B0\u3057\u3044\u30D5\u30A9\u30EB\u30C0\u30FC\\Battle\\Assets\\Scripts\\Battle\\BattleEvent.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Battle\\BattleEvent.cs",
+              "ToolTip": "C:\\Users\\ktc\\Desktop\\\u65B0\u3057\u3044\u30D5\u30A9\u30EB\u30C0\u30FC\\Battle\\Assets\\Scripts\\Battle\\BattleEvent.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Battle\\BattleEvent.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwkAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-28T03:02:03.214Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "BattleEventDispatcher.cs",
+              "DocumentMoniker": "C:\\Users\\ktc\\Desktop\\\u65B0\u3057\u3044\u30D5\u30A9\u30EB\u30C0\u30FC\\Battle\\Assets\\Scripts\\Battle\\BattleEventDispatcher.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Battle\\BattleEventDispatcher.cs",
+              "ToolTip": "C:\\Users\\ktc\\Desktop\\\u65B0\u3057\u3044\u30D5\u30A9\u30EB\u30C0\u30FC\\Battle\\Assets\\Scripts\\Battle\\BattleEventDispatcher.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Battle\\BattleEventDispatcher.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-28T02:41:05.668Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

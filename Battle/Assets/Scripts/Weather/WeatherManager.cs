@@ -1,5 +1,4 @@
 using Battle;
-using System;
 using Weather;
 
 public class WeatherManager
@@ -15,8 +14,15 @@ public class WeatherManager
         //既存の天候を終了させる
         Current?.OnEnd(context);
 
+        context.EventDispatcher.Dispatch(
+            new BattleEvent(BattleEventType.WeatherEnded, Current));
+
         Current = weather;
+        if (Current == null) return;
         Current.OnStart(context, owner);
+
+        context.EventDispatcher.Dispatch(
+                new BattleEvent(BattleEventType.WeatherStarted, Current, owner));
     }
 
     /// <summary>
@@ -27,7 +33,20 @@ public class WeatherManager
         if (Current == null) return;
 
         Current.OnEnd(context);
+
+        context.EventDispatcher.Dispatch(
+                new BattleEvent(BattleEventType.WeatherEnded, Current));
+
         Current = null;
+    }
+
+    /// <summary>
+    /// ターン開始時
+    /// </summary>
+    /// <param name="context"></param>
+    public void OnTurnStart(BattleContext context)
+    {
+        Current?.OnTurnStart(context);
     }
 
     /// <summary>

@@ -1,3 +1,4 @@
+using Battle;
 using Calculator;
 
 /// <summary>
@@ -18,10 +19,13 @@ namespace Weather
         }
 
         //天候発動時
-        public virtual void OnStart(Battle.BattleContext context, BattlePokemon owner)
+        public virtual void OnStart(BattleContext context, BattlePokemon owner)
         {
             RemainingTurn = WeatherDurationCalculator.Calculator(context, owner, BaseDuration);
         }
+
+        //ターン開始時
+        public virtual void OnTurnStart(BattleContext context) { }
 
         //毎ターン終了時
         public virtual void OnTurnEnd(Battle.BattleContext context) { }

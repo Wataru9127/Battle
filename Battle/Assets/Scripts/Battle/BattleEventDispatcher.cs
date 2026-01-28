@@ -1,21 +1,28 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 /// <summary>
-/// 効果イベント通知
+/// バトルイベントを全ポケモンに通知する
 /// </summary>
-public class BattleEventDispatcher : MonoBehaviour
+namespace Battle
 {
-    // Start is called before the first frame update
-    void Start()
+    public class BattleEventDispatcher
     {
-        
-    }
+        private readonly BattleContext context;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public BattleEventDispatcher(BattleContext context)
+        {
+            this.context = context;
+        }
+
+        public void Dispatch(BattleEvent battleEvent)
+        {
+            foreach (var pokemon in context.GetAllBattlePokemon())
+            {
+                if (pokemon.IsFainted) continue;
+
+                pokemon.PokemonData.Ability?
+                    .OnBattleEvent(battleEvent, context, pokemon);
+            }
+        }
     }
 }

@@ -12,13 +12,20 @@ namespace Field
         /// フィールドの発動
         /// ・上書きも含む
         /// </summary>
-        public void SetField(FieldBase field, BattleContext context)
+        public void SetField(FieldBase field, BattleContext context, BattlePokemon owner)
         {
             //既にフィールドが存在していたら終了
             Current?.OnEnd(context);
 
+            context.EventDispatcher.Dispatch(
+                new BattleEvent(BattleEventType.FieldEnded, Current));
+
             Current = field;
-            Current.OnStart(context);
+            if (Current == null) return;
+
+            Current.OnStart(context, owner);
+            context.EventDispatcher.Dispatch(
+                new BattleEvent(BattleEventType.FieldStarted, Current, owner));
         }
 
         /// <summary>
@@ -26,9 +33,9 @@ namespace Field
         /// </summary>
         /// <param name="context"></param>
         /// <param name="allowOverride"></param>
-        public void TryActivateFieldMakers(BattleContext context, bool allowOverride)
+        public void TryActivateFieldMakers(BattleContext context, FieldOverridePolicy policy)
         {
-            if (Current != null && !allowOverride) return;
+            if (Current != null && policy == FieldOverridePolicy.DenyIfExists) return;
 
             var makers = new List<(BattlePokemon pokemon, IFieldMakerAbility ability)>();
 
@@ -47,7 +54,7 @@ namespace Field
             var winner = DecidePriority(context, makers);
             var field = winner.ability.CreateField(context, winner.pokemon);
 
-            SetField(field, context);
+            SetField(field, context, winner.pokemon);
         }
 
         /// <summary>
@@ -58,8 +65,19 @@ namespace Field
             if (Current == null) return;
 
             Current.OnEnd(context);
+
+            context.EventDispatcher.Dispatch(
+                new BattleEvent(BattleEventType.FieldEnded, Current));
+
             Current = null;
         }
+
+        //ターン開始時
+        public virtual void OnTurnStart(BattleContext context)
+        {
+            Current?.OnTurnStart(context);
+        }
+
 
         /// <summary>
         /// 毎ターン終了時の処理
@@ -69,12 +87,17 @@ namespace Field
         {
             if (Current == null) return;
 
+            Current.OnTurnEnd(context);
+
             if (Current.Tick())
             {
                 ClearField(context);
             }
         }
 
+        /// <summary>
+        /// フィールドメーカー特性の優先順位決定
+        /// </summary>
         private (BattlePokemon pokemon, IFieldMakerAbility ability)
             DecidePriority(BattleContext context, List<(BattlePokemon pokemon, IFieldMakerAbility ability)> makers)
         {

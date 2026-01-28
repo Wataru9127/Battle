@@ -1,3 +1,4 @@
+using Battle;
 using UnityEngine;
 
 /// <summary>
@@ -5,5 +6,5 @@ using UnityEngine;
 /// </summary>
 public class PokemonAbility
 {
-
+    public void OnBattleEvent(BattleEvent battleEvent, BattleContext context, BattlePokemon owner) { }
 }

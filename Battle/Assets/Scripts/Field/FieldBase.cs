@@ -1,3 +1,5 @@
+using Battle;
+
 /// <summary>
 /// フィールド基底クラス
 /// </summary>
@@ -14,13 +16,16 @@ namespace Field
         }
 
         //フィールド発動時
-        public virtual void OnStart(Battle.BattleContext context)
+        public virtual void OnStart(BattleContext context, BattlePokemon owner)
         {
             context.AddLog($"{Name}が ひろがった！");
         }
 
+        //ターン開始時
+        public virtual void OnTurnStart(BattleContext context) { }
+
         //毎ターン終了時
-        public virtual void OnTurnEnd(Battle.BattleContext context) { }
+        public virtual void OnTurnEnd(BattleContext context) { }
 
         //フィールド終了時
         public virtual void OnEnd(Battle.BattleContext context)

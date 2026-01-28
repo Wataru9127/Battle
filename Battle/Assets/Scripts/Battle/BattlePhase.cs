@@ -1,21 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 /// <summary>
-/// ターン内フェーズ定義
+/// バトル進行フェーズ
 /// </summary>
-public class BattlePhase : MonoBehaviour
+namespace Battle
 {
-    // Start is called before the first frame update
-    void Start()
+    public enum BattlePhase
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        TurnStart,     // ターン開始（天候・フィールド処理）
+        ActionSelect,  // 行動選択（UI or AI）
+        ActionOrder,   // 行動順決定（素早さ・優先度）
+        ActionExecute, // 技実行
+        TurnEnd,       // ターン終了処理（定数ダメ・解除）
+        CheckBattleEnd // 勝敗判定
     }
 }

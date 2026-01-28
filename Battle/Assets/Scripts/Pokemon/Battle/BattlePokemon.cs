@@ -63,6 +63,13 @@ public class BattlePokemon
         IsTerastallized = false;
     }
 
+    public void OnBattleEvent(BattleEvent battleEvent, BattleContext context)
+    {
+        PokemonData.Ability?.OnBattleEvent(battleEvent, context, this);
+    }
+
+    public void OnTurnStart(BattleContext context) { }
+
     /// <summary>
     /// フォルムチェンジ・メガシンカ操作
     /// ・元に戻るときもこれを使う
@@ -149,6 +156,15 @@ public class BattlePokemon
     public void ClearTerastal()
     {
         IsTerastallized = false;
+    }
+
+    /// <summary>
+    /// 実数値取得
+    /// </summary>
+    /// <returns></returns>
+    public BaseStats GetBaseStats()
+    {
+        return PokemonData.GetBaseStats(currentForm);
     }
 
 }
