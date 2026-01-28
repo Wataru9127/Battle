@@ -33,14 +33,7 @@ public class BattlePokemon
             /*特性・状態・アイテムでの地面判定の追加*/
 
             /*ひこうタイプの場合*/
-            //テラスタル
-            if (IsTerastallized && TerastalType == Flying) return false;
-
-            //フォルムチェンジ・メガシンカ タイプ
-            if (currentForm != null && HasType(Flying)) return false; 
-
-            //通常タイプ
-            if (PokemonData.BaseInfo.Types.Contains(Flying)) return false;
+            if (HasType(Flying)) return true;
 
             return true;
         }
@@ -109,7 +102,35 @@ public class BattlePokemon
     /// </summary>
     public bool HasType(PokemonType type)
     {
-        //引数と同じタイプを返す
+        //テラスタル
+        if (IsTerastallized)
+        {
+            return TerastalType == type;
+        }
+
+        //フォルムチェンジ・メガシンカ
+        if (currentForm != null)
+        {
+            return currentForm.Types.Contains(type);
+        }
+
+        //通常
+        return PokemonData.BaseInfo.Types.Contains(type);
+    }
+
+    /// <summary>
+    /// 元のタイプ参照
+    /// </summary>
+    /// <param name="type"></param>
+    /// <returns></returns>
+    public bool HasBaseType(PokemonType type)
+    {
+        // フォルム・メガ後のタイプを元タイプとして扱う
+        if (currentForm != null)
+        {
+            return currentForm.Types.Contains(type);
+        }
+
         return PokemonData.BaseInfo.Types.Contains(type);
     }
 

@@ -3,6 +3,8 @@ using Waza;
 using Weather;
 using Common;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEngine.Rendering;
 
 /// <summary>
 /// ダメージ計算
@@ -122,12 +124,14 @@ namespace Calculator
             // テラスタル中
             if (attacker.TerastalType == wazaType)
             {
-                // 元タイプも一致している場合は2.0
-                return attacker.HasType(wazaType) ? 2.0f : 1.5f;
+                //元タイプも一致している場合は2.0
+                if (attacker.HasBaseType(wazaType)) return 2.0f;
+
+                return 1.5f;
             }
 
-            // テラスタルタイプ以外
-            return 1.0f;
+            // テラスタルタイプ中、技タイプがテラスタイプではない
+            return attacker.HasBaseType(wazaType) ? 1.5f : 1.0f;
         }
     }
 }

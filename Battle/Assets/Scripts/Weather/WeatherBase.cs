@@ -17,7 +17,7 @@ namespace Weather
             RemainingTurn = duration;
         }
 
-        //フィールド発動時
+        //天候発動時
         public virtual void OnStart(Battle.BattleContext context, BattlePokemon owner)
         {
             RemainingTurn = WeatherDurationCalculator.Calculator(context, owner, BaseDuration);
@@ -34,6 +34,12 @@ namespace Weather
             Waza.WazaBase waza)
         {
             return 1;
+        }
+
+        //能力補正 => すなあらし・ゆき 専用
+        public virtual float GetStatRate(BattlePokemon pokemon, PokemonStatType statType)
+        {
+            return 1f;
         }
 
         public bool Tick()

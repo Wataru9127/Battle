@@ -1,21 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using static PokemonType;
+using Battle;
+using static PokemonStatType;
 
 /// <summary>
 /// ゆき
 /// </summary>
-public class Snow : MonoBehaviour
+namespace Weather
 {
-    // Start is called before the first frame update
-    void Start()
+    public class Snow : WeatherBase
     {
-        
-    }
+        public override string Name => "ゆき";
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public Snow(int duration = 0) : base(duration) { }
+
+        public override void OnStart(BattleContext context, BattlePokemon owner)
+        {
+            base.OnStart(context, owner);
+            context.AddLog("ゆきが ふりはじめた！");
+        }
+
+        public override float GetStatRate(BattlePokemon pokemon, PokemonStatType statType)
+        {
+            //ぼうぎょ 以外は無視
+            if (statType != Defense) return 1f;
+
+            //こおりタイプ => 1.5倍
+            //その他 => 1.0倍(補正なし)
+            return pokemon.HasType(Ice) ? 1.5f : 1.0f;
+        }
     }
 }
