@@ -1,4 +1,5 @@
-using Calculator;
+using Battle;
+using Field;
 using System.Collections.Generic;
 using UnityEngine;
 using static PokemonStatType;
@@ -9,72 +10,31 @@ using static PokemonStatType;
 public static class PokemonStatsCalculator
 {
     /// <summary>
-    /// 実数値の計算
+    /// フォルム・IV・EV・性格・レベルを考慮した実数値
     /// </summary>
-    public static PokemonStats Calculate(PokemonGrowth growth)
+    public static int CalculateBaseStat(BattlePokemon pokemon, PokemonStatType statType)
     {
-        //引数用のDictionary
-        Dictionary< PokemonStatType, int> keyValues = new Dictionary< PokemonStatType, int>();
-
+        var growth = pokemon.PokemonData.Growth;
+        var baseStats = pokemon.GetBaseStats();
         int level = growth.Level;
 
-        //それぞれ値を取得
-        int hp = CalculateHP(
-            growth.BaseStats.HP,
-            growth.IV.individual[PokemonStatType.HP],
-            growth.EV.effort[PokemonStatType.HP],
-            level
-        );
+        if (statType == HP)
+        {
+            return CalculateHP(
+                baseStats.HP,
+                growth.IV.individual[HP],
+                growth.EV.effort[HP],
+                level
+            );
+        }
 
-        int attack = CalculateOther(
-            growth.BaseStats.Attack,
-            growth.IV.individual[PokemonStatType.Attack],
-            growth.EV.effort[PokemonStatType.Attack],
+        return CalculateOther(
+            baseStats.GetBaseStats(statType),
+            growth.IV.individual[statType],
+            growth.EV.effort[statType],
             level,
-            growth.Nature.GetModifier(PokemonStatType.Attack)
+            growth.Nature.GetModifier(statType)
         );
-
-        int defense = CalculateOther(
-            growth.BaseStats.Defense,
-            growth.IV.individual[PokemonStatType.Defense],
-            growth.EV.effort[PokemonStatType.Defense],
-            level,
-            growth.Nature.GetModifier(PokemonStatType.Defense)
-        );
-
-        int specialAttack = CalculateOther(
-            growth.BaseStats.SpecialAttack,
-            growth.IV.individual[PokemonStatType.SpecialAttack],
-            growth.EV.effort[PokemonStatType.SpecialAttack],
-            level,
-            growth.Nature.GetModifier(PokemonStatType.SpecialAttack)
-        );
-
-        int specialDefense = CalculateOther(
-            growth.BaseStats.SpecialDefense,
-            growth.IV.individual[PokemonStatType.SpecialDefense],
-            growth.EV.effort[PokemonStatType.SpecialDefense],
-            level,
-            growth.Nature.GetModifier(PokemonStatType.SpecialDefense)
-        );
-
-        int speed = CalculateOther(
-            growth.BaseStats.Speed,
-            growth.IV.individual[PokemonStatType.Speed],
-            growth.EV.effort[PokemonStatType.Speed],
-            level,
-            growth.Nature.GetModifier(PokemonStatType.Speed)
-        );
-
-        //追加
-        keyValues.Add(PokemonStatType.HP, hp);
-        keyValues.Add(PokemonStatType.Attack, attack);
-        keyValues.Add(PokemonStatType.Defense, defense);
-        keyValues.Add(PokemonStatType.SpecialAttack, specialAttack);
-        keyValues.Add(PokemonStatType.SpecialDefense, specialDefense);
-        keyValues.Add(PokemonStatType.Speed, speed);
-
-        return new PokemonStats(keyValues);
     }
 
     /// <summary>
@@ -83,20 +43,18 @@ public static class PokemonStatsCalculator
     /// </summary>
     private static int CalculateHP(int baseStat, int iv, int ev, int level)
     {
-        float value =
-            ((baseStat * 2f + iv + ev / 4f) * level / 100f) + level + 10f;
+        float value = ((baseStat * 2f + iv + ev / 4f) * level / 100f) + level + 10f;
 
         return Mathf.FloorToInt(value);
     }
 
     /// <summary>
     /// HP以外の実数値計算
-    /// ABDSC = floor((floor((種族値×2 + 個体値 + 努力値/4) × レベル / 100) + 5) × 性格補正)
+    /// ABCDS = floor((floor((種族値×2 + 個体値 + 努力値/4) × レベル / 100) + 5) × 性格補正)
     /// </summary>
     private static int CalculateOther(int baseStat, int iv, int ev, int level, float natureModifier)
     {
-        float baseValue =
-            (baseStat * 2f + iv + ev / 4f) * level / 100f;
+        float baseValue = (baseStat * 2f + iv + ev / 4f) * level / 100f;
 
         float value = Mathf.Floor(baseValue + 5f) * natureModifier;
 
@@ -104,35 +62,69 @@ public static class PokemonStatsCalculator
     }
 
     /// <summary>
-    /// バトル中の実数値の取得
+    /// 能力ランク補正
     /// ・ランク >= 0  => 実数値 × (2 + ランク) / 2
     /// ・ランク < 0   => 実数値 × 2 / (2 - ランク)
     /// ただし、HP・命中率はのぞく
     /// </summary>
-    public static int CalculateStat(BattlePokemon pokemon, PokemonStatType statType)
+    private static int ApplyRank(int stat, int rank)
     {
-        int returnint;
+        if (rank >= 0) return Mathf.FloorToInt(stat * (2f + rank) / 2f);
 
-        //現在の能力ランクを取得
-        int rank = pokemon.Condition.GetRank(statType);
+        return Mathf.FloorToInt(stat * 2f / (2f - rank));
+    }
 
-        //実数値を取得
-        int stat = pokemon.PokemonData.Stats.GetStatsValue(statType);
-
-        //ランク補正をかける
-        if (rank >= 0)
+    private static int ApplyStatsModifier(int value, BattleContext context, BattlePokemon pokemon, PokemonStatType statType)
+    {
+        // まひ
+        if (statType == PokemonStatType.Speed)
         {
-            returnint = Mathf.FloorToInt(stat * (2f + rank) / 2f);
+            value = Mathf.FloorToInt(
+                value * pokemon.Condition.GetSpeedModifier()
+            );
         }
-        else
+        return value;
+    }
+
+    private static int ApplyFieldModifier(int value, BattleContext context, BattlePokemon pokemon, PokemonStatType statType)
+    {
+        // フィールドが無ければそのまま
+        if (context.FieldManager == null ||
+            context.FieldManager.Current == null)
         {
-            returnint = Mathf.FloorToInt(stat * 2f / (2f - rank));
+            return value;
         }
 
-        /*状態異常、特性、アイテム、フィールド、追い風 などの
-         実数値に絡んでくるものを計算する*/
+        float rate = context.FieldManager.Current.GetStatModifier(
+            context,
+            pokemon,
+            statType
+        );
 
-        //最低値 1 を保証
-        return Mathf.Max(1, returnint);
+        return Mathf.FloorToInt(value * rate);
+    }
+
+    /// <summary>
+    /// バトル中の現在値の取得
+    /// </summary>
+    public static int CalculateStat(BattleContext context, BattlePokemon pokemon, PokemonStatType statType)
+    {
+        //1.フォルム考慮済み実数値
+        int value = CalculateBaseStat(pokemon, statType);
+
+        //2. ランク
+        value = ApplyRank(value, pokemon.Condition.GetRank(statType));
+
+        //3. 状態異常
+        value = ApplyStatsModifier(value, context, pokemon, statType);
+
+        //4. 特性
+        value = AbilityCalculator.ApplyAbilityModifier(value, context, pokemon, statType);
+
+        //5. フィールド・天候
+        value = ApplyFieldModifier(value, context, pokemon, statType);
+
+        //6. 最低値の保証
+        return Mathf.Max(1, value);
     }
 }

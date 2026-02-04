@@ -248,4 +248,17 @@ public class PokemonCondition
             NonVolatile = NonVolatile.OnSwitchOut();
         }
     }
+
+
+    // --------------------
+    // ”\—Í’lŽæ“¾—pAPI
+    // --------------------
+    /// <summary>
+    /// ‚·‚Î‚â‚³ ‚Ì”{—¦Žæ“¾
+    /// </summary>
+    /// <returns></returns>
+    public float GetSpeedModifier()
+    {
+        return NonVolatile?.GetSpeedModifier() ?? 1f;
+    }
 }

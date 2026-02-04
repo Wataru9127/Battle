@@ -14,6 +14,9 @@ public class BattlePokemon
     //ポケモンの情報
     public PokemonData PokemonData { get; }
 
+    //とくせい(実体・ロジック)
+    public PokemonAbility Ability { get; }
+
     //テラスタル判定
     public bool IsTerastallized { get; private set; }
 
@@ -50,8 +53,15 @@ public class BattlePokemon
     public FormChangeData? currentForm { get; private set; }
 
     //名前の簡易取得用
-    public string Name => PokemonData.BaseInfo.Name;
+    public string Name
+    {
+        get
+        {
+            if (currentForm != null) return currentForm.FormName;
 
+            return PokemonData.BaseInfo.Name;
+        }
+    }
 
 
 
@@ -59,13 +69,15 @@ public class BattlePokemon
     {
         PokemonData = pokemonData;
         PokemonData.SetOwner(this);
+        PokemonData.SetBaseStats();
+        //Ability = AbilityFactory.Create(data.Ability, this);
         TerastalType = terastal;
         IsTerastallized = false;
     }
 
     public void OnBattleEvent(BattleEvent battleEvent, BattleContext context)
     {
-        PokemonData.Ability?.OnBattleEvent(battleEvent, context, this);
+        //PokemonData.Ability?.OnBattleEvent(battleEvent, context, this);
     }
 
     public void OnTurnStart(BattleContext context) { }

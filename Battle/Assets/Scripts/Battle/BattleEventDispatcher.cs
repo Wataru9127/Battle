@@ -20,8 +20,10 @@ namespace Battle
             {
                 if (pokemon.IsFainted) continue;
 
-                pokemon.PokemonData.Ability?
-                    .OnBattleEvent(battleEvent, context, pokemon);
+                if (pokemon.PokemonData.Ability == AbilityID.None) continue;
+
+                //pokemon.PokemonData.Ability?
+                //    .OnBattleEvent(battleEvent, context, pokemon);
             }
         }
     }

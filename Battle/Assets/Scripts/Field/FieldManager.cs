@@ -43,10 +43,10 @@ namespace Field
             {
                 if (pokemon.IsFainted) continue;
 
-                if (pokemon.PokemonData.Ability is IFieldMakerAbility maker)
-                {
-                    makers.Add((pokemon, maker));
-                }
+                //if (pokemon.PokemonData.Ability is IFieldMakerAbility maker)
+                //{
+                //    makers.Add((pokemon, maker));
+                //}
             }
 
             if (makers.Count == 0) return;
@@ -104,8 +104,8 @@ namespace Field
             //‚·‚Î‚â‚³ ‚Ì~‡‚É•À‚×‘Ö‚¦‚é
             makers.Sort((a, b) =>
             {
-                int speedA = PokemonStatsCalculator.CalculateStat(a.pokemon, Speed);
-                int speedB = PokemonStatsCalculator.CalculateStat(b.pokemon, Speed);
+                int speedA = PokemonStatsCalculator.CalculateStat(context, a.pokemon, Speed);
+                int speedB = PokemonStatsCalculator.CalculateStat(context, b.pokemon, Speed);
 
                 if (speedA != speedB)
                     return speedB.CompareTo(speedA);

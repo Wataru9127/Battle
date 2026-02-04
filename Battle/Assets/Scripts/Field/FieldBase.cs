@@ -40,6 +40,12 @@ namespace Field
             return 1;
         }
 
+        //能力値補正倍率の取得（素早さ・攻撃など）
+        public virtual float GetStatModifier(BattleContext context, BattlePokemon pokemon, PokemonStatType statType)
+        {
+            return 1f;
+        }
+
         //技使用可否 => サイコフィールド用
         public virtual bool CanUseWaza(BattlePokemon attacker, BattlePokemon defender,
             Waza.WazaBase waza)

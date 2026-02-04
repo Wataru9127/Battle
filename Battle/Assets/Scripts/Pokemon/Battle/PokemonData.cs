@@ -1,4 +1,5 @@
-using UnityEngine;
+using System.Collections.Generic;
+using static PokemonStatType;
 
 /// <summary>
 /// 1匹のポケモンの情報をすべて持つ
@@ -14,20 +15,17 @@ public class PokemonData
     //種族値・個体値・努力値・せいかく・レベル
     public PokemonGrowth Growth { get; private set; }
 
-    //とくせい
-    public PokemonAbility Ability { get; }
+    //とくせい(IDのみ)
+    public AbilityID Ability { get; }
 
     //実数値
     public PokemonStats Stats { get; private set; }
 
-    public PokemonData(PokemonBaseInfo baseInfo, PokemonGrowth growth, PokemonAbility ability)
+    public PokemonData(PokemonBaseInfo baseInfo, PokemonGrowth growth, AbilityID ability)
     {
         BaseInfo = baseInfo;
         Growth = growth;
         Ability = ability;
-
-        //バトル開始時の実数値の計算
-        Stats = PokemonStatsCalculator.Calculate(Growth);
     }
 
     public void SetOwner(BattlePokemon owner)
@@ -35,9 +33,19 @@ public class PokemonData
         Owner = owner;
     }
 
-    public void SetGrowth(PokemonGrowth growth)
+    public void SetBaseStats()
     {
-        Growth = growth;
+        //追加用Dictionary
+        Dictionary<PokemonStatType, int> keyValues = new Dictionary<PokemonStatType, int>();
+
+        keyValues.Add(HP, PokemonStatsCalculator.CalculateBaseStat(Owner, HP));
+        keyValues.Add(Attack, PokemonStatsCalculator.CalculateBaseStat(Owner, Attack));
+        keyValues.Add(Defense, PokemonStatsCalculator.CalculateBaseStat(Owner, Defense));
+        keyValues.Add(SpecialAttack, PokemonStatsCalculator.CalculateBaseStat(Owner, SpecialAttack));
+        keyValues.Add(SpecialDefense, PokemonStatsCalculator.CalculateBaseStat(Owner, SpecialDefense));
+        keyValues.Add(Speed, PokemonStatsCalculator.CalculateBaseStat(Owner, Speed));
+
+        Stats = new PokemonStats(keyValues);
     }
 
     /// <summary>
@@ -47,9 +55,11 @@ public class PokemonData
     /// <returns></returns>
     public BaseStats GetBaseStats(FormChangeData form)
     {
+        if (Owner.currentForm != null)
+        {
+            return Owner.currentForm.BaseStats;
+        }
+
         return Growth.BaseStats;
-        //if (form != null)
-        //if (FormStats.TryGetValue(form, out var stats))
-        //    return stats;
     }
 }
